@@ -11,7 +11,7 @@ First download all the files of this repository from the green button to downloa
 ```git
 git clone https://github.com/meiyor/GPT_superAPI_Quiz.git
 ```
-Now install **pip** and **python-dev** in your system already having **Python>=3.8** installed in your system
+Now install **pip** and **python-dev** in your system already having **Python>=3.8** already installed in your system
 
 ```bash
 apt update
