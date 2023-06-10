@@ -45,7 +45,7 @@ These are the ports where your application will run the communication between **
 ```bash
 ngrok http 5000
 ```
-After running this command you will obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application **app.py** will be located. I have marked in a red square (1) the address of the server and (2) the route of the public address that the application will have. Take this address into account for next steps.
+After running this command you will obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application **app.py** will be located. I have marked in a red square (1) the address of the server and (2) the route of the public address that the application will have. Take these addresses into account for next steps.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="900" height="500">
 
