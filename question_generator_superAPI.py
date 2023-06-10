@@ -21,7 +21,9 @@ def get_Quiz(correctness,prev_questions):
      prev_question_string = prev_question_string+'\n'+body_question[0]
 
   print(prev_question_string,'prev_question_string')  
-
+  
+  ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
+  ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   if correctness == 0:
      data = 'write one new easy random question with multiple choice about contemporary culture without repetition, and write the correct answer at the end of the text, do not repeat the following questions: '+ prev_question_string+ '\n'
   else:
