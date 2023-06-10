@@ -11,3 +11,15 @@ First download all the files of this repository from the green button to downloa
 ```git
 git clone https://github.com/meiyor/GPT_superAPI_Quiz.git
 ```
+Now install **pip** and **python-dev** in your system already having **Python>=3.8** installed in your system
+
+```bash
+apt update
+apt install python3-pip
+```
+Having **pip** installed you must install the requirements included as the file **requirements.txt**. Then, go to the root folder and run this command to install the requirements necessary for running the app.
+
+```bash
+pip3 install -r requirements.txt
+```
+The next step is setting a **ngrok** account in 
