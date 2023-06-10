@@ -53,12 +53,12 @@ Now we are are ready to deploy/launch the application on the **ngrok** server.
 
 # Launching/Deploying
 
-The first step for deploying is setting app the SQL database as local file with **Flask-SQLAlchemy** and **SQLAlchemy**, to set the database tables you need to execute the following python command in the root directory.
+The first step for deploying is setting app the SQL database as local file with **Flask-SQLAlchemy** and **SQLAlchemy**, to set the database tables you need to execute the following python command located in the root directory.
 
 ```python
 python3 db_create.py
 ```
-The next step integrates the **Flask** web app contained in the file **app.py** with the **javascript** engine included in the **static** folder as **app.js**. The user interface is constructed in the **templates** folder as the html file **base.html**. This will be loaded in ngrok from the port 5000. Therefore, in order to deploy the app you must open a new terminal (additional to the **ngrok** server one) and execute the following python command in the root directory.
+The next step integrates the **Flask** web app contained in the file **app.py** with the **javascript** engine included in the **static** folder as **app.js**. The user interface is constructed in the **templates** folder as the html file **base.html**. This will be loaded in the **ngrok** server from the port 5000. Therefore, in order to deploy the app you must open a new terminal (additional to the **ngrok** server one) and execute the following python command located in the root directory.
 
 ```python
 python3 app.py
