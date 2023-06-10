@@ -27,7 +27,7 @@ The next step is setting a **ngrok** account in [ngrok.com](https://ngrok.com/).
 ```bash
 snap install ngrok
 ```
-Now, you need to authenticate your **ngrok** account running the command set for authorization in the **ngrok** dashboard as it shown in the following image and command.
+Now, you need to authenticate your **ngrok** account running the command for authorization located in the **ngrok** dashboard, as it is shown in the following image and command.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/image_ngrok.png" width="1000" height="150">
 
