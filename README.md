@@ -47,7 +47,7 @@ ngrok http 5000
 ```
 After running this command you will  obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application will be ending in .app. I have marked in a red square (1) the address of the server and (2) the route of the public address that the application will have. Take this address into account for next steps.
 
-<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="900" height="400">
+<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="900" height="500">
 
 Now we are are ready to deploy/launch the application on the **ngrok** server. 
 
@@ -64,4 +64,10 @@ The next step integrates the **Flask** web app contained in the file **app.py** 
 python3 app.py
 ```
 
+While both terminals are running you can open the browser of your preference, I suggest **firefox** or **Google Chrome** and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red squared. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Next we will obtained the following screen after accessing the **ngrok** forwarding address.
 
+<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_first_page.jpg" width="900" height="500">
+
+In this page you need to click the button **Visit site** and accept the regulations of the **ngrok** server, after you click it you will see the presentation **Flask** and **SuperAPI** based web app running.
+
+<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/app_presentation.jpg" width="900" height="500">
