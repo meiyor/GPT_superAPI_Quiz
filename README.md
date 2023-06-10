@@ -34,7 +34,7 @@ Now, you need to authenticate your **ngrok** account running the command for aut
 ```bash
 ngrok config add-authtoken 2QwQndCshan5Blls6oewbCPRUbe_2HG1EGCAE59mpJnEZhmZs
 ```
-I added here my configuration key code but you must have one in your account when you activate yours. This process will let you activate a VPS in your local machine and will give you a public address where you can access your application. Now you need to allow permissions to port 5000 and 4040. You can do it with the **ufw** command.
+I added here my configuration key code but you must have one in your account dashboard when you activate yours. This process will let you activate a VPS in your local machine and will give you a public address where you can access your application. Now you need to allow permissions to port 5000 and 4040. You can do it with the **ufw** command.
 
 ```bash
 ufw allow 5000
