@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+</head>
+<body>
+<div class="div_main" style="position:absolute; left:250px; top:50px;">
+        <h1>Login Quiz ChatGPT</h1>
+        <label for="">Username</label>
+        <input type="text" name="" id="" class="input_username" value=""> <br/>
+        <label for="">Password</label> 
+        <input type="password" id="passw" class="input_password" value=""><br/>
+        <button class="btn_login">Login</button><br/><br/>  
+        <h2>Login Status: <span class="span_result"> </span></h2>
+  </div>
+<div class="container">
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                </div>
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Quiz ChatGPT</h4>
+                    <p class="chatbox__description--header">Hi, This is a Quiz Chatbot! loading Quiz..</p>
+                </div>
+            </div>
+            <div class="chatbox__messages">
+                <div></div>
+            </div>
+            <div class="chatbox__footer">
+                <input type="text" placeholder="Write a message...">
+                <button class="chatbox__send--footer send__button">Send</button>
+            </div>
+        </div>
+        <div class="chatbox__button">
+            <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
+        </div>
+    </div>
+</div>
+
+    <script>
+     var pass= document.getElementById("passw").innerHTML;
+     var char = pass.length;
+     var password ="";
+     for (i=0;i<char;i++) 
+     {
+       password += "*";
+     }
+     document.getElementById("passw").innerHTML = password;
+   </script>
+    <script>
+        $SCRIPT_ROOT = {{ request.script_root|tojson }};
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>
