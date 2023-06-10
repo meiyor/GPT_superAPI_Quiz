@@ -86,6 +86,22 @@ The first you must do is to enter the user name and password in the login sectio
  
  Now, you must continue answer with the letters the chatbox is given to you, you can answer **A** or **A.** or **A)** whatever of this options can be processed with lower cases too. You have indefinitive time to answer each question. While you are advancing in the quiz the chatbox will tell you how many questions you have answered correctly and when you finished the quiz they will tell you your percentage of **correctness**. If you reply **yes** when you finish your quiz the app will save your responses, correctness and the questions that have been asked to you in the database. 
  
+ The following screen is obtained during the quiz evaluation and there the chatbox will inform the user how many correct questions has been achieved.
+ 
+ <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/during_quiz.jpg" width="900" height="500">
+ 
+ Subsequently, when the quiz ends the following screen appears showing the user/you what was your level of correctness in the quiz and if you want to save your information in the database.
+ 
+ <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/end_quiz.jpg" width="900" height="500">
+ 
+ You can do the amount of quizzes you want replying **yes** to the quizzes continuation, each quiz trial will be saved in the database. To stop the process you must reply **n**, **N**, **No** or similars in upper cases or clicking again in the chatbox deploy button this will erase all the messages in the chatbox and you will start the quizzes from scratch, zero quizzes, and zero questions added in the **SuperAPI** query for adapting the difficulty. If you start from zero it is possible that some questions will be repeated. Therefore I suggest to do as many quizzes as possible to fill more the query
+ 
+Finally, here we show a screenshot of the database showing the quiz trials the number of correct answers and the level of correctness in the fields. We can see that in any online SQL viewer. The id is generated randomly and is the primary-key per quiz trial and the questions are saved in a Pickle format. Using **SQLAlchemy** it is easy to return all this question data to a list or json.
+ 
+ <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/database.jpg" width="900" height="500">
+ 
+ Taking in general terms it tooks me a lot of work to put this **Flask** based web app in a public address because most of the free linux servers available in the web that support **Flask** use **gunicorn** or **WSIG** and this represent a high web concurrency in the process they launch and we need to contact the people who manages these servers to let only one fork and one worker per session to avoid the usage of an extra database to save the global variables in **app.py**. We can say that we can make the **SuperAPI** query a bit more complex adding more data and more questions, and specifying more topics, but this is out of the scope of this web app. Hope you enjoy testing it and this can be a starting point for more complete and ambicious projects.
+ 
  
  
 
