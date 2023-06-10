@@ -31,8 +31,7 @@ def get_Quiz(correctness,prev_questions):
 
   response = requests.post(url, headers=headers, data=data)
 
-  #print(response)
-
+  ## if the fecth is done correctly process the message from the chatbox
   if response.status_code == 200:
       result = response.content.decode('utf8')
       ## check if the question has a number ahead
@@ -92,7 +91,7 @@ def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
 if __name__ == "__main__":
     print("Let's solve the quiz! (type 'quit' to exit)")
     while True:
-        # sentence = "do you use credit cards?"
+        #Start chosing to take the quiz or not"
 
         sentence = input("You: ")
         if sentence == "quit":
