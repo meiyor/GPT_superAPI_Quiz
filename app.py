@@ -26,7 +26,7 @@ from sqlalchemy.sql import func
 #from pyngrok import conf
 
 #global string_quiz do it inside each Flask function
-# create always a new connection with ngrok
+# create always a new connection with ngrok using an endpoint in separate file. This file will be read by app.js
 
 subprocess.call("curl -s localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url' > static/endpoint.txt",shell=True)
 subprocess.call("chmod 777 static/endpoint.txt",shell=True)
