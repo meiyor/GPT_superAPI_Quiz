@@ -17,7 +17,7 @@ Now install **pip** and **python-dev** in your system already having **Python>=3
 apt update
 apt install python3-pip
 ```
-Having **pip** installed you must install the requirements included as the file **requirements.txt**. Then, go to the root folder and run this command to install the requirements necessary for running the app.
+Having **pip** installed you must install the requirements included as the file **requirements.txt**. Then, go to the root folder and run this command to install the requirements necessary for running the app. Some of the requirements for this app are **Flask**, **Flask-cors**, **requests**, **Flask-SQLAlchemy**, **subprocess**, and  **SQLAlchemy**.
 
 ```bash
 pip3 install -r requirements.txt
@@ -47,4 +47,15 @@ ngrok http 5000
 ```
 After running this command you will  obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application will be ending in .app. I have marked in a red square (1) the address of the server and (2) the route of the public address that the application will have. Take this address into account for next steps.
 
-<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="700" height="400">
+<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="900" height="400">
+
+Now we are are ready to deploy/launch the application on the **ngrok** server. 
+
+# Launching/Deploying
+
+The first step for deploying is setting app the SQL database as local file with **Flask-SQLAlchemy** and **SQLAlchemy**, to set the database tables you need to execute the following python command.
+
+```python
+python3 db_create.py
+```
+
