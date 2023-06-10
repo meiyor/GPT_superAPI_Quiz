@@ -64,7 +64,7 @@ The next step integrates the **Flask** web app contained in the file **app.py** 
 python3 app.py
 ```
 
-While both terminals are running you can open the browser of your preference, I suggest **firefox** or **Google Chrome**,and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red squared. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Next we will obtained the following screen after accessing the **ngrok** forwarding address.
+While both terminals are running you can open the browser of your preference. I suggest **firefox** or **Google Chrome** and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red squared. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Next we will obtained the following screen after accessing the **ngrok** forwarding address.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_first_page.jpg" width="900" height="500">
 
