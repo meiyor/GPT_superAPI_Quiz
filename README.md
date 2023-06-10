@@ -64,10 +64,28 @@ The next step integrates the **Flask** web app contained in the file **app.py** 
 python3 app.py
 ```
 
-While both terminals are running you can open the browser of your preference, I suggest **firefox** or **Google Chrome** and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red squared. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Next we will obtained the following screen after accessing the **ngrok** forwarding address.
+While both terminals are running you can open the browser of your preference, I suggest **firefox** or **Google Chrome**,and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red squared. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Next we will obtained the following screen after accessing the **ngrok** forwarding address.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_first_page.jpg" width="900" height="500">
 
 In this page you need to click the button **Visit site** and accept the regulations of the **ngrok** server, after you click it you will see the presentation **Flask** and **SuperAPI** based web app running.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/app_presentation.jpg" width="900" height="500">
+
+In this web presentation we have the login section marked in the red square and the chat deploy button marked with a green squared, now we will continue with the testing and evaluation of this web app.
+
+# Testing/Evaluation
+
+The first you must do is to enter the user name and password in the login section and click on the **login** button. This will set your username and password information for the database and the chatbox will refer to you as your username in all the time you are testing with different questions. After you set your login process a text will appear in the login status as **new user 'username'**. Note that the database is not checking for repeating usernames or passwords yet. It generates a new field in the database each time a quiz is finalized.
+
+  <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/newuser.jpg" width="900" height="500">
+  
+ **If and only after** you login you can click the chatbox button marked with the green squared. This embedded chatbox can offer youan infinite different quizzes only if you want to continue to do more. When you click on it the chatbox will ask if you want to solve a quiz with a random number of questions **between 3 and 15**. The chatbox will ask you first if you want to proceed with the quiz and you must answer **yes**, **y**, **Yes** or any equivalence in uppercase can be processed. After you answer **yes** you can start selecting the letters the chatbox will give you as options/answers. The following screen will appear after you answer **yes**.
+ 
+ <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/first_question.jpg" width="900" height="500">
+ 
+ Now, you must continue answer with the letters the chatbox is given to you, you can answer **A** or **A.** or **A)** whatever of this options can be processed with lower cases too. You have indefinitive time to answer each question. While you are advancing in the quiz the chatbox will tell you how many questions you have answered correctly and when you finished the quiz they will tell you your percentage of **correctness**. If you reply **yes** when you finish your quiz the app will save your responses, correctness and the questions that have been asked to you in the database. 
+ 
+ 
+ 
+
