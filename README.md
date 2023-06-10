@@ -22,7 +22,7 @@ Having **pip** installed you must install the requirements included as the file 
 ```bash
 pip3 install -r requirements.txt
 ```
-The next step is setting a **ngrok** account in [ngrok.com](https://ngrok.com/). Having an account you can download the latest version for linux and added in the folder **/snap/bin/** if you want to do it more automatically you can use the **ngrok** file added in this repository and added in the folder **/snap/bin/** or installinng it using **snap**.
+The next step is setting a **ngrok** account in [ngrok.com](https://ngrok.com/). Having an account you can download the latest version for linux and add it in the folder **/snap/bin/** if you want to do it more automatically you can use the **ngrok** file added in this repository and added in the folder **/snap/bin/** or installinng it using **snap** following this command.
 
 ```bash
 snap install ngrok
