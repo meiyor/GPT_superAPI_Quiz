@@ -1,2 +1,2 @@
 # GPT_superAPI_Quiz
-This repository contents Python, JS, CSS, and html files necessary to run a SuperAPI/ChatGPT powered Quiz application with adaptable level of difficulty.
+This repository contents Python, JS, CSS, and html files necessary to run a SuperAPI/ChatGPT powered Quiz application with adaptable level of difficulty. The process of preparation, launching, and evaluation will be explained in this README file. Hope you enjoy the experience to evaluate this quiz application powered with one of the novel APIs such as [SuperAPI](https://superapi.ai/). The queries to adapt difficult and to bring questions to the chatbox of this appication are powered by this API. 
