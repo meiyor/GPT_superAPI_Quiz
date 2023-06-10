@@ -40,7 +40,7 @@ I added there my configuration key but you must have one in your account when yo
 ufw allow 5000
 ufw allow 4040
 ```
-These are the ports where your application will run more specifically the ngrok server and your application. The next step is loading the **ngrok** server following the this command.
+These are the ports where your application will run the communication between **Flask** and **javascript**. More specifically the ngrok server and your application. The next step is loading/uploading the **ngrok** server following the this command.
 
 ```bash
 ngrok http 5000
