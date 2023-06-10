@@ -17,7 +17,7 @@ Now install **pip** and **python-dev** in your system already having **Python>=3
 apt update
 apt install python3-pip, python-dev
 ```
-Having **pip** installed you must install the requirements included as the file **requirements.txt**. Then, go to the root folder and run this command to install the requirements necessary for running the app. Some of the requirements for this app are **Flask**, **Flask-cors**, **requests**, **Flask-SQLAlchemy**, and **subprocess**.
+Having **pip** installed you must install the requirements included as the file **requirements.txt**. Then, go to the root folder and run this command to install the requirements that are necessary for running the app. Some of the requirements for this app are **Flask**, **Flask-cors**, **requests**, **Flask-SQLAlchemy**, and **subprocess**.
 
 ```bash
 pip3 install -r requirements.txt
