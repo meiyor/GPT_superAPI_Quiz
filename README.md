@@ -34,7 +34,7 @@ Now, you need to authenticate your **ngrok** account running the command set for
 ```bash
 ngrok config add-authtoken 2QwQndCshan5Blls6oewbCPRUbe_2HG1EGCAE59mpJnEZhmZs
 ```
-I added there my configuration key but you must have one in your account when you activate yours. This process will let you activate a VPS in your local machine and will give you a public address where you can access your application. Now you need to allow permissions to port 5000 and 4040 you can do it with the **ufw** command.
+I added there my configuration key but you must have one in your account when you activate yours. This process will let you activate a VPS in your local machine and will give you a public address where you can access your application. Now you need to allow permissions to port 5000 and 4040 and you can do it with the **ufw** command.
 
 ```bash
 ufw allow 5000
@@ -45,5 +45,6 @@ This are the ports where your application will run more specifically the ngrok s
 ```bash
 ngrok http 5000
 ```
-After running 
+After running this command you will  obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application will be ending in .app. I have marked in a red square (1) the address of the server and (2) the route of the public address that the application will have. Take this address into account for next steps.
 
+<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="700" height="400">
