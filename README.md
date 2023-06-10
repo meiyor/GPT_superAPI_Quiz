@@ -22,4 +22,17 @@ Having **pip** installed you must install the requirements included as the file 
 ```bash
 pip3 install -r requirements.txt
 ```
-The next step is setting a **ngrok** account in 
+The next step is setting a **ngrok** account in [ngrok.com](https://ngrok.com/). Having an account you can download the latest version for linux and added in the folder **/snap/bin/** if you want to do it more automatically you can use the **ngrok** file added in this repository and added in the folder **/snap/bin/** or installinng it using **snap**.
+
+```bash
+snap install ngrok
+```
+Now, you need to authenticate your **ngrok** account running the command set for authorization in the **ngrok** dashboard as it shown in the following image and command.
+
+<img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/image_ngrok.png" width="500" height="200">
+
+```bash
+ngrok config add-authtoken 2QwQndCshan5Blls6oewbCPRUbe_2HG1EGCAE59mpJnEZhmZs
+```
+I added there my configuration key but you must have one in your account when you activate yours. This process will let you activate a VPS in your local machine and will give you a public address where you can access your application.
+
