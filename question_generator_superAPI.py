@@ -25,9 +25,9 @@ def get_Quiz(correctness,prev_questions):
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   if correctness == 0:
-     data = 'write one new easy random question with multiple choice (with letters) about contemporary culture without repetition, and write the correct answer at the end of the text, do not repeat the following questions: '+ prev_question_string+ '\n'
+     data = 'write one new easy random question with multiple choice (with letters) about contemporary culture without repetition, and write the correct answer at the end of the text, and please do not repeat the following questions: '+ prev_question_string+ '\n'
   else:
-     data = 'write one new difficult (hard) random question with  multiple choice (with letters) about multiple topics without repetition, and write the correct answer at the end of the text, do not repeate and make it harder than the following questions: '+ prev_question_string+ '\n'
+     data = 'write one new difficult (hard) random question with  multiple choice (with letters) about multiple topics without repetition, and write the correct answer at the end of the text, please do not repeate and make it harder than the following questions: '+ prev_question_string+ '\n'
 
   response = requests.post(url, headers=headers, data=data)
 
