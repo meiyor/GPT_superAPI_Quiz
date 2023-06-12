@@ -7,7 +7,7 @@
     <title>Chatbot</title>
 </head>
 <body>
-<div class="div_main" style="position:absolute; left:250px; top:50px;">
+<div class="div_main">
         <h1>Login Quiz ChatGPT</h1>
         <label for="">Username</label>
         <input type="text" name="" id="" class="input_username" value=""> <br/>
@@ -29,14 +29,15 @@
                 </div>
             </div>
             <div class="chatbox__messages">
-                <div></div>
+                <div>
+                </div>
             </div>
             <div class="chatbox__footer">
                 <input type="text" placeholder="Write a message...">
                 <button class="chatbox__send--footer send__button">Send</button>
             </div>
         </div>
-        <div class="chatbox__button">
+        <div class="chatbox__button", style="display:none;">
             <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
         </div>
     </div>
