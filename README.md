@@ -80,7 +80,7 @@ The first you must do is to enter the user name and password in the login sectio
 
   <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/newuser.jpg" width="900" height="500">
   
- **If and only after** you login you can click the chatbox button marked with the green squared. This embedded chatbox can offer you an infinite different amount of quizzes only if you want to continue to do more. When you click on it the chatbox it will ask if you want to solve a quiz with a random number of questions **between 3 and 15**. The chatbox will ask you first if you want to proceed with the quiz and you must answer **yes**, **y**, **Yes** or any equivalence in uppercase can be processed. After you answer **yes** you can start selecting the letters the chatbox will give you as options/answers. The following screen will appear after you answer/reply **yes** and start the quiz.
+ **If and only after** you login you can click the chatbox button marked with the green squared because it will be first time it will appear. This embedded chatbox can offer you an infinite different amount of quizzes only if you want to continue to do more. When you click on it the chatbox it will ask if you want to solve a quiz with a random number of questions **between 3 and 15**. The chatbox will ask you first if you want to proceed with the quiz and you must answer **yes**, **y**, **Yes** or any equivalence in uppercase can be processed. After you answer **yes** you can start selecting the letters the chatbox will give you as options/answers. The following screen will appear after you answer/reply **yes** and start the quiz.
  
  <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/first_question.jpg" width="900" height="500">
  
