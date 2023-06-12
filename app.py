@@ -158,7 +158,7 @@ def predict():
           correct_count = 0
           string_prev=string_quiz[1]
           length_quiz=number_questions
-          message =  {"answer": f"Quiz is ready! Want to start the {length_quiz} questions?"}
+          message =  {"answer": f"Quiz is ready! Want to start the {length_quiz} questions? reply yes or no!"}
           print(message,'message')
           return jsonify(message)
 

@@ -96,7 +96,7 @@ def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
       ## validate the end of the Quiz here
       if ccount >= len_quiz:
            rate_correctness=(correct_count/len_quiz)*100
-           d_answers=f'End of the Quiz! Your score was: {rate_correctness}% '+'\n Want to do other quiz? \n if yes your information will be saved in a database..\n'
+           d_answers=f'End of the Quiz! Your score was: {rate_correctness}% '+'\n reply yes and your information will be saved in the database..\n'
            def_answer=correct_answer+d_answers    
       else:
            d_answers=answers
