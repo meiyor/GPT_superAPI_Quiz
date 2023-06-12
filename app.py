@@ -134,7 +134,7 @@ def predict():
     global password
     ## initialize correctness in 0
     correctness =0
-
+    ids=[]
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
@@ -142,8 +142,14 @@ def predict():
        count_questions=count_questions+1
     
     if (text.lower() == 'yes' or text.lower() == 'y') and count_questions>=number_questions:
+          ## check for ids
+          for value in db.session.query(gpt_data.id).distinct():
+                ids.append(value)
           ##database update
-          GPT = gpt_data(id=random.randint(0,1000),username=username,password=password,correct_questions=correct_count,num_questions=number_questions,correctness=(correct_count/number_questions)*100,questions=string_prev)
+          id_data=random.randint(0,5000)
+          while id_data in ids:
+                 id_data=random.randint(0,5000)
+          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,num_questions=number_questions,correctness=(correct_count/number_questions)*100,questions=prev_questions)
           db.session.add(GPT)
           db.session.commit()
           number_questions=random.randint(3,15)
@@ -161,9 +167,14 @@ def predict():
          correctness=1
     else:
          correctness=0
-   
+
+    ## validation of the request
     string_quiz=get_Quiz(correctness,prev_questions)
-    while len(string_quiz)==1:
+    while isinstance(string_quiz, int):
+      string_quiz=get_Quiz(correctness,prev_questions)
+    while (len(string_quiz)<=1):
+       string_quiz=get_Quiz(correctness,prev_questions)
+    while (len(string_quiz[1])<2):
        string_quiz=get_Quiz(correctness,prev_questions)
     
     prev_questions.append(string_quiz[0])
@@ -193,4 +204,3 @@ if __name__ == "__main__":
    #url = 'http://127.0.0.1:5000'
    #browser.open_new(url)
    app.run() #use_reloader=False)
-
