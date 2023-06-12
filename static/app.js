@@ -8,6 +8,7 @@ Promise.all([
 });
 
 let btnLogin = document.querySelector('.btn_login')
+
 let passwords = [];
 let usernames = [];
 
@@ -41,7 +42,8 @@ class Chatbox {
     }
 
     addUser(){
-
+    
+    document.querySelector('.chatbox__button').style.display = "block";
     var newUser = document.querySelector('.input_username').value;
     var newPass = document.querySelector('.input_password').value;
     var status = document.querySelector('.span_result');
@@ -81,6 +83,7 @@ class Chatbox {
 
         // show or hides the box
         if(this.state) {
+            this.updateChatText(chatbox,1);
             chatbox.classList.add('chatbox--active')
             fetch(server+'/ini', {
             method: 'POST',
@@ -93,11 +96,11 @@ class Chatbox {
           .then(r => {
           let msg_ini = { name: "User", message: user_global+'=>'+r.answer };
           this.messages.push(msg_ini);
-          this.updateChatText(chatbox);
+          this.updateChatText(chatbox,0);
           textField.value = ''
           }).catch((error) => {
             console.error('Error:', error);
-            this.updateChatText(chatbox)
+            this.updateChatText(chatbox,0)
             textField.value = ''
           });
 
@@ -123,7 +126,8 @@ class Chatbox {
         let msg1 = { name: "User", message: user_global+': '+text1 }
         
         this.messages.push(msg1);
-
+        this.updateChatText(chatbox,1)
+        
         await fetch(server+'/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -136,17 +140,18 @@ class Chatbox {
            .then(r => {
             let msg2 = { name: "User", message: r.answer };
             this.messages.push(msg2);
-            this.updateChatText(chatbox)
+            this.updateChatText(chatbox,0)
             textField.value = ''
 
         }).catch((error) => {
             console.error('Error:', error);
-            this.updateChatText(chatbox)
+            this.updateChatText(chatbox,0)
             textField.value = ''
           });
     }
+    
 
-    updateChatText(chatbox) {
+    updateChatText(chatbox,sel) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "User")
@@ -159,11 +164,18 @@ class Chatbox {
             }
           });
 
+         if (sel == 1)
+         {
+            html += '<div class="loading" style="position:absolute; left:25px; top:400px;"><div class="circle circle-1"></div><div class="circle circle-2"></div><div class="circle circle-3"></div></div>'
+
+         }
+
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
     }
 }
 
+const toggleLoading=(show)=>loadingElement.classList.toggle("hide",show)
 
 const chatbox = new Chatbox();
 chatbox.display();
