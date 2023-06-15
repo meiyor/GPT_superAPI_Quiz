@@ -45,7 +45,7 @@ These are the ports where your application will run the communication between **
 ```bash
 ngrok http 5000
 ```
-After running this command you will obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application **app.py** will be located. I have marked in a red square (1) the address of the server and (2) the route of the public address that the application will have. Take these addresses into account for next steps.
+After running this command you will obtain the following screen in your terminal giving the real-time status of the **ngrok** server and the public address where your application **app.py** will be located. I have marked in a red rectangle (1) the address of the server and (2) the route of the public address that the application will have. Take these addresses into account for next steps.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_server_running.jpg" width="900" height="500">
 
@@ -64,7 +64,7 @@ The next step integrates the **Flask** web app contained in the file **app.py** 
 python3 app.py
 ```
 
-While both terminals are running you can open the browser of your preference. I suggest **firefox** or **Google Chrome** and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red squared. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Having the server running we will obtain the following screen after accessing the **ngrok** forwarding address.
+While both terminals are running you can open the browser of your preference. I suggest **firefox** or **Google Chrome** and copy and paste the address you obtained from the **ngrok** server as forwarding address. The one marked in the red rectangle. This address can be accessed from anywhere in the world while the **app.py** and the **ngrok** server are active/running. Having the server running we will obtain the following screen after accessing the **ngrok** forwarding address.
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/ngrok_first_page.jpg" width="900" height="500">
 
@@ -72,7 +72,7 @@ In this page you need to click the button **Visit site** and accept the regulati
 
 <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/app_presentation.jpg" width="900" height="500">
 
-In this web presentation we have the login section marked in the red square and the chat deploy button marked with a green squared. Now, we will continue with the testing and evaluation of this web app.
+In this web presentation we have the login section marked in the red rectangle and the chat deploy button marked with a green rectangle. Now, we will continue with the testing and evaluation of this web app.
 
 # Testing/Evaluation
 
@@ -80,7 +80,7 @@ The first you must do is to enter the user name and password in the login sectio
 
   <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/newuser.jpg" width="900" height="500">
   
- **If and only after** you login you can click the chatbox button marked with the green squared because it will be first time it will appear. This embedded chatbox can offer you an infinite different amount of quizzes only if you want to continue to do more. When you click on it the chatbox it will ask if you want to solve a quiz with a random number of questions **between 3 and 15**. The chatbox will ask you first if you want to proceed with the quiz and you must answer **yes**, **y**, **Yes** or any equivalence in uppercase can be processed. After you answer **yes** you can start selecting the letters the chatbox will give you as options/answers. The following screen will appear after you answer/reply **yes** and start the quiz.
+ **If and only after** you login you can click the chatbox button marked with the green rectangle because it will be first time it will appear. This embedded chatbox can offer you an infinite different amount of quizzes only if you want to continue to do more. When you click on it the chatbox it will ask if you want to solve a quiz with a random number of questions **between 3 and 15**. The chatbox will ask you first if you want to proceed with the quiz and you must answer **yes**, **y**, **Yes** or any equivalence in uppercase can be processed. After you answer **yes** you can start selecting the letters the chatbox will give you as options/answers. The following screen will appear after you answer/reply **yes** and start the quiz.
  
  <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/first_question.jpg" width="900" height="500">
  
