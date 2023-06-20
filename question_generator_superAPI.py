@@ -86,8 +86,8 @@ def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
       len_quiz=len_quiz
       answer_def=string_prev
       answers=string_quiz[0]
-      #print(temp_answer,'split',answers,ccount,'values')
-      if answer[0].lower() == string_prev[2].lower() or answer.lower() in string_prev.lower(): ## evaluate correctness of the question 
+      print(answer,string_prev,'values')
+      if answer[0].lower() == string_prev[2].lower() or (answer.lower() in string_prev.lower() and answer.lower() == string_prev.lower()): ## evaluate correctness of the question 
          correct_answer='Correct! \n\n'
          correct_count=correct_count+1
       else:
