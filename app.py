@@ -191,7 +191,7 @@ def predict():
     
     ##add the number of questions answered correctly
     if count_questions > 0 and not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'no') and not(text.lower() == 'n'):
-        response = response + f"\n You have anwered {correct_count}/{number_questions} questions correctly!"
+        response = response + f"\n You have answered {correct_count}/{number_questions} questions correctly!"
     
     response = response.replace('\n', '<br/>') ## subtitute \n by <br\> for the html reading in the chat widget
     message =  {"answer": response}
