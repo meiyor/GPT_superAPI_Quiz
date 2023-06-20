@@ -115,6 +115,12 @@ def ini():
     count_questions = 0
     correct_count = 0
     string_quiz=get_Quiz(0,prev_questions)
+    while string_quiz=="Error":
+      string_quiz=get_Quiz(0,prev_questions)
+    while (len(string_quiz)<2):
+       string_quiz=get_Quiz(0,prev_questions)
+    while (len(string_quiz[1])<2):
+       string_quiz=get_Quiz(0,prev_questions)
     string_prev=string_quiz[1]
     prev_questions.append(string_quiz[0])
     length_quiz=number_questions
