@@ -170,9 +170,9 @@ def predict():
 
     ## validation of the request
     string_quiz=get_Quiz(correctness,prev_questions)
-    while isinstance(string_quiz, int):
+    while string_quiz=="Error":
       string_quiz=get_Quiz(correctness,prev_questions)
-    while (len(string_quiz)<=1):
+    while (len(string_quiz)<2):
        string_quiz=get_Quiz(correctness,prev_questions)
     while (len(string_quiz[1])<2):
        string_quiz=get_Quiz(correctness,prev_questions)

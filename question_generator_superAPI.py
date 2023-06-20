@@ -72,7 +72,7 @@ def get_Quiz(correctness,prev_questions):
       return result_separated
   else:
      print("Error:", response.status_code)
-     return -1
+     return "Error"
 
 def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
   
