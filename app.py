@@ -147,7 +147,7 @@ def predict():
                 ids.append(value)
           ##database update
           id_data=random.randint(0,5000)
-          while id_data in ids:
+          if id_data in ids:
                  id_data=random.randint(0,5000)
           GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,num_questions=number_questions,correctness=(correct_count/number_questions)*100,questions=prev_questions)
           db.session.add(GPT)
