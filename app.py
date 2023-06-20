@@ -21,6 +21,8 @@ from sqlalchemy import Float
 
 from sqlalchemy.sql import func
 
+import datetime
+
 #from flask import session
 
 #from pyngrok import conf
@@ -44,6 +46,7 @@ correct_count=0
 prev_questions = []
 username = []
 password = []
+correct_ans=[]
 
 number_questions=random.randint(3,15)
 
@@ -65,8 +68,10 @@ class gpt_data(db.Model):
     username = db.Column(db.String(100), nullable=True)
     password = db.Column(db.String(100), nullable=False)
     correct_questions = db.Column(db.Integer, nullable=False)
+    time_replied = db.Column(db.String(100), nullable=False)
     num_questions = db.Column(db.Integer, nullable=False)
     correctness = db.Column(Float,nullable=False)
+    correct_answers = db.Column(db.PickleType, nullable=True)
     questions = db.Column(db.PickleType, nullable=True)
     
     def __hash__(self):
@@ -138,6 +143,7 @@ def predict():
     global prev_questions
     global username
     global password
+    global correct_ans
     ## initialize correctness in 0
     correctness =0
     ids=[]
@@ -155,7 +161,8 @@ def predict():
           id_data=random.randint(0,5000)
           if id_data in ids:
                  id_data=random.randint(0,5000)
-          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,num_questions=number_questions,correctness=(correct_count/number_questions)*100,questions=prev_questions)
+          time_now = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
+          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,time_replied=time_now,num_questions=number_questions,correctness=(correct_count/number_questions)*100,correct_answers=correct_ans,questions=prev_questions)
           db.session.add(GPT)
           db.session.commit()
           number_questions=random.randint(3,15)
@@ -184,6 +191,7 @@ def predict():
        string_quiz=get_Quiz(correctness,prev_questions)
     
     prev_questions.append(string_quiz[0])
+    correct_ans.append(correctness+'=> reply: '+text+' correct answer: '+string_prev)
 
     response, correct_count = get_response(text,string_quiz,count_questions,correct_count,number_questions,string_prev)
     string_prev = string_quiz[1]
