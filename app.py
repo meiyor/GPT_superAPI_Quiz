@@ -129,7 +129,7 @@ def ini():
     string_prev=string_quiz[1]
     prev_questions.append(string_quiz[0])
     length_quiz=number_questions
-    message =  {"answer": f"the quiz is ready! Want to start the {length_quiz} questions?"}
+    message =  {"answer": f"the quiz is ready! Want to start the {length_quiz} questions? reply yes or no."}
     print(message,'message')
     return jsonify(message)
 
@@ -150,10 +150,10 @@ def predict():
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
-    if not(text.lower() == 'yes') and not(text.lower() == 'y'):
+    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok'):
        count_questions=count_questions+1
     
-    if (text.lower() == 'yes' or text.lower() == 'y') and count_questions>=number_questions:
+    if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok') and count_questions>=number_questions:
           ## check for ids
           for value in db.session.query(gpt_data.id).distinct():
                 ids.append(value)
@@ -191,7 +191,7 @@ def predict():
        string_quiz=get_Quiz(correctness,prev_questions)
     
     prev_questions.append(string_quiz[0])
-    correct_ans.append(correctness+'=> reply: '+text+' correct answer: '+string_prev)
+    correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+string_prev)
 
     response, correct_count = get_response(text,string_quiz,count_questions,correct_count,number_questions,string_prev)
     string_prev = string_quiz[1]

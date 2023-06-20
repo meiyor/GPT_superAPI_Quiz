@@ -76,7 +76,7 @@ def get_Quiz(correctness,prev_questions):
 
 def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
   
-   if answer.lower()=='yes' or answer.lower()=='y':
+   if answer.lower()=='yes' or answer.lower()=='y' or answer.lower()=='ok':
       return(str(ccount+1)+'.'+string_quiz[0],correct_count)
    elif answer.lower()=='no' or answer.lower()=='n':
       return('End of the Quiz!\n',correct_count)
