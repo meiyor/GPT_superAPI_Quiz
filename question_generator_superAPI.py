@@ -29,20 +29,20 @@ def get_Quiz(correctness,prev_questions):
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
          if number_query<=10:
-           data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one new question about general culture with its corresponding choices/answers and write the correct answer at the end of the text'
+           data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate ONE new question about general culture with its corresponding choices/answers and write the correct answer at the end of the text'
          else:
-           data = 'write one new easy random question with multiple choice about general culture without repetition, write the choices after the question, and write the correct answer at the end of the text, and please do not repeat any of the following questions: '+ prev_question_string+ '\n'
+           data = 'write ONE new easy random question with multiple choice about general culture without repetition, write the choices after the question, and write the correct answer at the end of the text, and please do not repeat any of the following questions: '+ prev_question_string+ '\n'
      else:
-           data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one new question about contemporary culture with its corresponding choices/answers and write the correct answer at the end of the text'
+           data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate ONE new question about contemporary culture with its corresponding choices/answers and write the correct answer at the end of the text'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one new hard/difficult question about multiple topics with its corresponding choices/answers and write the correct answer at the end of the text'
+         data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate ONE new hard/difficult question about multiple topics with its corresponding choices/answers and write the correct answer at the end of the text'
        else:
-         data = 'write one new really hard random question with multiple choice about multiple topics without repetition, write choices after the question, and write the correct answer at the end of the text, please do not repeate any of the following questions: ' + prev_question_string+ '\n'
+         data = 'write ONE new really hard random question with multiple choice about multiple topics without repetition, write choices after the question, and write the correct answer at the end of the text, please do not repeate any of the following questions: ' + prev_question_string+ '\n'
      else:
-         data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one new VERY! hard/difficult question about multiple topics with its corresponding choices/answers and write the correct answer at the end of the text'
+         data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate ONE new VERY! hard/difficult question about multiple topics with its corresponding choices/answers and write the correct answer at the end of the text'
   response = requests.post(url, headers=headers, data=data)
 
   ## if the fecth is done correctly process the message from the chatbox
