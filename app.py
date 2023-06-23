@@ -128,8 +128,8 @@ def ini():
        string_quiz=get_Quiz(0,prev_questions)
     string_prev=string_quiz[1]
     prev_questions.append(string_quiz[0])
-    length_quiz=number_questions
-    message =  {"answer": f"the quiz is ready! Want to start the {length_quiz} questions? reply yes or no."}
+    len_quiz=number_questions
+    message =  {"answer": f"the quiz is ready! Want to start the {len_quiz} questions? reply yes or no."}
     print(message,'message')
     return jsonify(message)
 
@@ -150,7 +150,7 @@ def predict():
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
-    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok' and not(text.lower() == 'ye') and not(text.lower() == 'yeah')):
+    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
        count_questions=count_questions+1
     
     if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions:
@@ -170,8 +170,8 @@ def predict():
           count_questions = 0
           correct_count = 0
           string_prev=string_quiz[1]
-          length_quiz=number_questions
-          message =  {"answer": f"Quiz is ready! Want to start the {length_quiz} questions? reply yes or no!"}
+          len_quiz=number_questions
+          message =  {"answer": f"Quiz is ready! Want to start the {len_quiz} questions? reply yes or no!"}
           print(message,'message')
           return jsonify(message)
 
@@ -179,7 +179,14 @@ def predict():
     if text[0].lower() == string_prev[2].lower() or (text.lower() in string_prev.lower() and text.lower() == string_prev.lower()): ## evaluate correctness of the question before calling the request
          correctness=1
     else:
-         correctness=0
+       if len(text)<=3 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah' or text.lower() == 'no' or text.lower() == 'n'):
+          correctness=0
+       else:
+          correctness=0
+          message = {"answer": "Please select a valid option!!\n"}
+          print(message,'message') 
+          return jsonify(message)
+           
 
     ## validation of the request
     string_quiz=get_Quiz(correctness,prev_questions)
