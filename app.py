@@ -111,7 +111,9 @@ def ini():
     global correct_count
     global number_questions
     global prev_questions
+    global correct_ans
 
+    correct_ans=[]
     prev_questions = []
     number_questions=random.randint(3,15)
     #text =  request.get_json().get("message")
@@ -147,6 +149,7 @@ def predict():
     ## initialize correctness in 0
     correctness =0
     ids=[]
+    prev_questions_temp=[]
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
@@ -162,7 +165,10 @@ def predict():
           if id_data in ids:
                  id_data=random.randint(0,5000)
           time_now = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,time_replied=time_now,num_questions=number_questions,correctness=(correct_count/number_questions)*100,correct_answers=correct_ans,questions=prev_questions)
+          ## update the content of previous questions
+          for i_data in range(0,len(prev_questions)):
+              prev_questions_temp.append(prev_questions[i_data].replace('\n',' '))
+          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,time_replied=time_now,num_questions=number_questions,correctness=(correct_count/number_questions)*100,correct_answers=correct_ans,questions=prev_questions_temp)
           db.session.add(GPT)
           db.session.commit()
           number_questions=random.randint(3,15)
