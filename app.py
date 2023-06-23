@@ -198,7 +198,11 @@ def predict():
        string_quiz=get_Quiz(correctness,prev_questions)
     
     prev_questions.append(string_quiz[0])
-    correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+string_prev)
+    st_prev=string_prev.split(':')
+    if not('yes' in text) or not('y' in text) and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
+        correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
+    else:
+        correct_ans.append("")
 
     response, correct_count = get_response(text,string_quiz,count_questions,correct_count,number_questions,string_prev)
     string_prev = string_quiz[1]
