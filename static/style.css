@@ -32,7 +32,21 @@ body {
 .div_main {
     position: absolute;
     top: 50px;
-    left: 80px;
+    left: 85px;
+}
+
+.input_username
+{
+   position: absolute;
+   top: 40px;
+   left: 85px;
+}
+
+.input_password
+{
+   position: absolute;
+   top: 60px;
+   left: 85px;
 }
 
 
