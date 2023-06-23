@@ -150,10 +150,10 @@ def predict():
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
-    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok'):
+    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok' and not(text.lower() == 'ye') and not(text.lower() == 'yeah')):
        count_questions=count_questions+1
     
-    if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok') and count_questions>=number_questions:
+    if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions:
           ## check for ids
           for value in db.session.query(gpt_data.id).distinct():
                 ids.append(value)
@@ -176,7 +176,7 @@ def predict():
           return jsonify(message)
 
     ##evaluate correctness before to process more difficult questions before
-    if text[0].lower() == string_prev[2].lower() or text.lower() in string_prev.lower(): ## evaluate correctness of the question before calling the request
+    if text[0].lower() == string_prev[2].lower() or (text.lower() in string_prev.lower() and text.lower() == string_prev.lower()): ## evaluate correctness of the question before calling the request
          correctness=1
     else:
          correctness=0

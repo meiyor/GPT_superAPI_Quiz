@@ -104,7 +104,7 @@ def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
       if ccount >= len_quiz:
            rate_correctness=(correct_count/len_quiz)*100
            d_answers=f'End of the Quiz! Your score was: {rate_correctness}% '+'\n reply yes and your information will be saved in the database..\n'
-           def_answer=correct_answer+d_answers    
+           def_answer=correct_answer+d_answers
       else:
            d_answers=answers
            def_answer=correct_answer+str(ccount+1)+'.'+d_answers ## join the options for printing again in the chat widget
