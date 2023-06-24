@@ -43,6 +43,7 @@ string_quiz = []
 string_prev = []
 count_questions = 0
 correct_count=0
+correct_value=0
 prev_questions = []
 username = []
 password = []
@@ -115,7 +116,9 @@ def ini():
     global number_questions
     global prev_questions
     global correct_ans
+    global correct_value
 
+    correct_value=0
     correct_ans=[]
     prev_questions = []
     number_questions=random.randint(3,15)
@@ -154,8 +157,9 @@ def predict():
     global username
     global password
     global correct_ans
+    global correct_value
     ## initialize correctness in 0
-    correctness =0
+    correctness=correct_value
     ids=[]
     prev_questions_temp=[]
     text =  request.get_json().get("message")
@@ -193,15 +197,17 @@ def predict():
     if text[0].lower() == string_prev[2].lower() or (text.lower() in string_prev.lower() and text.lower() == string_prev.lower()): ## evaluate correctness of the question before calling the request
          correctness=1
     else:
-       if len(text)<=3 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah' or text.lower() == 'no' or text.lower() == 'n'):
+       if len(text)<=3 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text.lower() == 'no' or text.lower() == 'n':
           correctness=0
+       elif  text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah':
+          correct_value=correctness 
        else:
           correctness=0
           message = {"answer": "Please select a valid option!!\n"}
           print(message,'message') 
           return jsonify(message)
            
-
+    correct_value=correctness
     ## validation of the request
     string_quiz=get_Quiz(correctness,prev_questions)
     while string_quiz=="Error":
