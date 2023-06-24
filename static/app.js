@@ -43,7 +43,7 @@ class Chatbox {
 
     addUser(){
     
-    document.querySelector('.chatbox__button').style.display = "block";
+    /* document.querySelector('.chatbox__button').style.display = "block";*/
     var newUser = document.querySelector('.input_username').value;
     var newPass = document.querySelector('.input_password').value;
     var status = document.querySelector('.span_result');
@@ -54,7 +54,6 @@ class Chatbox {
     console.log(passwords);
 
     status.innerHTML = "";
-    status.appendChild(document.createTextNode("New User " + newUser + "!"))
     
     fetch(server+'/adduser', {
             method: 'POST',
@@ -66,6 +65,13 @@ class Chatbox {
           })
            .then(ack => ack.json())
            .then(ack => {
+            if (ack == 'incomplete'){
+               status.appendChild(document.createTextNode("Please fill up the necessary data!"))
+            }
+            if (ack == 'none'){
+              status.appendChild(document.createTextNode("New User " + newUser + "!"))
+              document.querySelector('.chatbox__button').style.display = "block";
+            }
             console.log(ack)
             textField.value = ''
         }).catch((error) => {
@@ -73,7 +79,7 @@ class Chatbox {
             this.updateChatText(chatbox)
             textField.value = ''
           });
-
+     
      user_global=newUser
 
     }
