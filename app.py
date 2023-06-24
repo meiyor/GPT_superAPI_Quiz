@@ -208,28 +208,38 @@ def predict():
           return jsonify(message)
            
     correct_value=correctness
-    ## validation of the request
-    string_quiz=get_Quiz(correctness,prev_questions)
-    while string_quiz=="Error":
-      string_quiz=get_Quiz(correctness,prev_questions)
-    while (len(string_quiz)<2):
-       string_quiz=get_Quiz(correctness,prev_questions)
-    while (len(string_quiz[1])<2):
-       string_quiz=get_Quiz(correctness,prev_questions)
-    ##analyze the type of data
-    str_temp=string_quiz[1].split(':')
-    while (len(str_temp)<2):
-       string_quiz=get_Quiz(correctness,prev_questions)
-       str_temp=string_quiz[1].split(':')
+    if not(text.lower() == 'no') and not(text.lower() == 'n'):
+        ## validation of the request
+        string_quiz=get_Quiz(correctness,prev_questions)
+        while string_quiz=="Error":
+           string_quiz=get_Quiz(correctness,prev_questions)
+        while (len(string_quiz)<2):
+           string_quiz=get_Quiz(correctness,prev_questions)
+        while (len(string_quiz[1])<2):
+           string_quiz=get_Quiz(correctness,prev_questions)
+        ##analyze the type of data
+        str_temp=string_quiz[1].split(':')
+        while (len(str_temp)<2):
+           string_quiz=get_Quiz(correctness,prev_questions)
+           str_temp=string_quiz[1].split(':')
+     
+    if text.lower() == 'no' or text.lower() == 'n':
+          prev_questions = []
+          count_questions = 0
+          correct_count = 0
+          correct_ans = []
  
-    if count_questions < number_questions:
+    if count_questions < number_questions and not(text.lower() == 'no') and not(text.lower() == 'n'):
        prev_questions.append(string_quiz[0])
 
     ## analyze only the prev question response
     st_prev=string_prev.split(':')
  
-    if not('yes' in text) or not('y' in text) and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
-        correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
+    if not('yes' in text) and not('y' in text) and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
+         if '\n' in st_prev[1]:
+            temp_prev=st_prev[1].split('\n')
+            st_prev[1]=temp_prev[0]
+         correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
     #else:
     #    correct_ans.append("")
 
