@@ -174,7 +174,7 @@ def predict():
                 ids.append(value)
           ##database update
           id_data=random.randint(0,5000)
-          if id_data in ids:
+          while id_data in ids:
                  id_data=random.randint(0,5000)
           time_now = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
           ## update the content of previous questions
