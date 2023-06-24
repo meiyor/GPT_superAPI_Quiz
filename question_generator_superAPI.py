@@ -25,24 +25,25 @@ def get_Quiz(correctness,prev_questions):
   
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
+  number_options=random.randint(3,5)
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
          if number_query<=10:
-           data = 'Write a (one) new question about general culture with maximum 4-5 choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+           data = f'Write a (one) new question about general culture with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
          else:
-           data = 'Write a (one) new, easy, and random question with maximum 4-5 choices/answers, specify the choices after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+           data = f'Write a (one) new, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
      else:
-           data = 'Write a (one) new question about contemporary culture with maximum 4-5 choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+           data = f'Write a (one) new question about contemporary culture with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data =  'Write a (one) new hard/difficult question about any specific topic with maximum 4-5 choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+         data =  f'Write a (one) new hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
        else:
-         data = 'Write a (one) new hard/difficult random question with maximum 4-5 choices/answers about any specific topic, specify the choices after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+         data = f'Write a (one) new hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
      else:
-         data =  'Write a (one) VERY HARD! new question about any specific topic with maximum 4-5 choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+         data =  f'Write a (one) VERY HARD! new question about any specific topic with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
   response = requests.post(url, headers=headers, data=data)
 
   ## if the fecth is done correctly process the message from the chatbox
