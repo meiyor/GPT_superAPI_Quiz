@@ -29,20 +29,20 @@ def get_Quiz(correctness,prev_questions):
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
          if number_query<=10:
-           data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one single and unique new question about general culture with its corresponding choices/answers and write the correct answer at the end of the text \n'
+           data = 'Specify ONE new question about general culture with its corresponding choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
          else:
-           data = 'write one single and unique new easy random question with multiple choice about general culture without repetition, write the choices after the question, and write the correct answer at the end of the text, and please do not repeat any of the following questions: '+ prev_question_string+ '\n'
+           data = 'Specify ONE new easy random question with multiple choice about general culture, write the choices after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
      else:
-           data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one single and unique new question about contemporary culture with its corresponding choices/answers and write the correct answer at the end of the text \n'
+           data = 'Specify ONE new question about contemporary culture with its corresponding choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one single and unique new hard/difficult question about multiple topics with its corresponding choices/answers and write the correct answer at the end of the text \n'
+         data =  'Specify ONE new hard/difficult question about a variety of topics with its corresponding choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
        else:
-         data = 'write one single and unique new really hard random question with multiple choice about multiple topics without repetition, write choices after the question, and write the correct answer at the end of the text, please do not repeate any of the following questions: ' + prev_question_string+ '\n'
+         data = 'Specify ONE new hard/difficult random question about a variety of topics, write the choices after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
      else:
-         data = 'Please do not repeat any of these following questions: '+ prev_question_string+ '\n Generate one single and unique new VERY! hard/difficult question about multiple topics with its corresponding choices/answers and write the correct answer at the end of the text \n'
+         data =  'Specify ONE VERY HARD! new question about a variety of topics with its corresponding choices/answers after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
   response = requests.post(url, headers=headers, data=data)
 
   ## if the fecth is done correctly process the message from the chatbox
@@ -67,7 +67,7 @@ def get_Quiz(correctness,prev_questions):
         #elif 'is' in result:
         #  result_separated=result.split('is')
         else:
-          result_separated=result.split('\n\n')
+          result_separated=result.split('/n/n')
       ## look for indeces in the list that start with answer and divided in get_response
       #result=' '.join(result)
       #print(result)

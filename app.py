@@ -94,14 +94,17 @@ def index_get():
 #   return render_template("base.html")
 @app.post("/adduser")
 def adduser():
-    ack=1
+    ack='none'
     global username
     global password
     userpass =  request.get_json()
     print(userpass)
     username=userpass.get("user")
     password=userpass.get("pass")
-    return jsonify(ack)
+    if len(username)==0 or len(password)==0:
+       return(jsonify('incomplete'))
+    else:
+       return jsonify(ack)
 
 @app.post("/ini")
 def ini():
@@ -128,8 +131,13 @@ def ini():
        string_quiz=get_Quiz(0,prev_questions)
     while (len(string_quiz[1])<2):
        string_quiz=get_Quiz(0,prev_questions)
+    ## analyze the type of data
+    str_temp=string_quiz[1].split(':')
+    while (len(str_temp)<2):
+       string_quiz=get_Quiz(correctness,prev_questions)
+       str_temp=string_quiz[1].split(':')
     string_prev=string_quiz[1]
-    prev_questions.append(string_quiz[0])
+    #prev_questions.append(string_quiz[0])
     len_quiz=number_questions
     message =  {"answer": f"the quiz is ready! Want to start the {len_quiz} questions? reply yes or no."}
     print(message,'message')
@@ -202,13 +210,22 @@ def predict():
        string_quiz=get_Quiz(correctness,prev_questions)
     while (len(string_quiz[1])<2):
        string_quiz=get_Quiz(correctness,prev_questions)
-    
-    prev_questions.append(string_quiz[0])
+    ##analyze the type of data
+    str_temp=string_quiz[1].split(':')
+    while (len(str_temp)<2):
+       string_quiz=get_Quiz(correctness,prev_questions)
+       str_temp=string_quiz[1].split(':')
+ 
+    if count_questions < number_questions:
+       prev_questions.append(string_quiz[0])
+
+    ## analyze only the prev question response
     st_prev=string_prev.split(':')
+ 
     if not('yes' in text) or not('y' in text) and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
         correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
-    else:
-        correct_ans.append("")
+    #else:
+    #    correct_ans.append("")
 
     response, correct_count = get_response(text,string_quiz,count_questions,correct_count,number_questions,string_prev)
     string_prev = string_quiz[1]
