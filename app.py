@@ -173,7 +173,7 @@ def predict():
           for value in db.session.query(gpt_data.id).distinct():
                 ids.append(value[0])
           ##database update
-          print(ids,'ids')
+          ##print(ids,'ids')
           id_data=random.randint(0,5000)
           while id_data in ids:
                  id_data=random.randint(0,5000)
