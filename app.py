@@ -171,8 +171,9 @@ def predict():
     if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions:
           ## check for ids
           for value in db.session.query(gpt_data.id).distinct():
-                ids.append(value)
+                ids.append(value[0])
           ##database update
+          print(ids,'ids')
           id_data=random.randint(0,5000)
           while id_data in ids:
                  id_data=random.randint(0,5000)
@@ -188,6 +189,7 @@ def predict():
           count_questions = 0
           correct_count = 0
           string_prev=string_quiz[1]
+          ids = []
           len_quiz=number_questions
           message =  {"answer": f"Quiz is ready! Want to start the {len_quiz} questions? reply yes or no!"}
           print(message,'message')
