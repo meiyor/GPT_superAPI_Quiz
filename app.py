@@ -165,7 +165,7 @@ def predict():
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
-    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
+    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e'):
        count_questions=count_questions+1
     
     if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions:
