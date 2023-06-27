@@ -127,6 +127,7 @@ def ini():
     # TODO: check if text is valid
     count_questions = 0
     correct_count = 0
+    ##test the connection asking for a first question but don't attach it to main questions set
     string_quiz=get_Quiz(0,prev_questions)
     while string_quiz=="Error":
       string_quiz=get_Quiz(0,prev_questions)
@@ -142,7 +143,7 @@ def ini():
     string_prev=string_quiz[1]
     #prev_questions.append(string_quiz[0])
     len_quiz=number_questions
-    message =  {"answer": f"the quiz is ready! Want to start the {len_quiz} questions? reply yes or no."}
+    message =  {"answer": f"The quiz is ready! Want to start the {len_quiz} questions? reply yes or no."}
     print(message,'message')
     return jsonify(message)
 
