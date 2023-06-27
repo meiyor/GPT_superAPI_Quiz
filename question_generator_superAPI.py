@@ -55,7 +55,7 @@ def get_Quiz(correctness,prev_questions):
          result=result[2:]
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
-      result = result.replace('(','')
+      #result = result.replace('(','')
       if 'Correct' in result:
         if 'answer' in result:
           result_separated=result.split('Correct answer')
@@ -73,6 +73,7 @@ def get_Quiz(correctness,prev_questions):
       ## look for indeces in the list that start with answer and divided in get_response
       #result=' '.join(result)
       #print(result)
+      results_separated[1].replace('(','')
       print(result_separated,'result_separated')
       #R=json.loads(result)
       #print(R)
