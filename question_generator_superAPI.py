@@ -68,7 +68,7 @@ def get_Quiz(correctness,prev_questions):
         #elif 'is' in result:
         #  result_separated=result.split('is')
         else:
-          result_separated=result.split('/n/n')
+          result_separated=result
       ## look for indeces in the list that start with answer and divided in get_response
       #result=' '.join(result)
       #print(result)
