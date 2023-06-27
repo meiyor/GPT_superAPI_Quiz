@@ -55,6 +55,7 @@ def get_Quiz(correctness,prev_questions):
          result=result[2:]
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
+      result = result.replace('(','')
       if 'Correct' in result:
         if 'answer' in result:
           result_separated=result.split('Correct answer')
