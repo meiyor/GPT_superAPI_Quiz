@@ -243,7 +243,7 @@ def predict():
             temp_prev=st_prev[1].split('\n')
             st_prev[1]=temp_prev[0]
          correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
-    #else:
+    #else: ## do not need to append if  the condition is not achieved
     #    correct_ans.append("")
 
     response, correct_count = get_response(text,string_quiz,count_questions,correct_count,number_questions,string_prev)
