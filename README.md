@@ -100,6 +100,8 @@ Finally, here we show a screenshot of the database showing the quiz trials I hav
  
  <img src="https://github.com/meiyor/GPT_superAPI_Quiz/blob/main/images/database.jpg" width="900" height="500">
  
+ This same repository is locate in a Google Drive link here [**https://drive.google.com/file/d/1uJllFRy8v5x6hGiJXS5PVgHejwxa1VQA/view?usp=sharing**](https://drive.google.com/file/d/1uJllFRy8v5x6hGiJXS5PVgHejwxa1VQA/view?usp=sharing)
+ 
   It tooks me a lot of work and time to put this **Flask** based web app in a public address. Most of the free and pay-as-go Linux servers that are available in the web, and support **Flask**, use **gunicorn** or **WSIG** and this represent a high web concurrency in the deploying process. These dedicated servers launch multiple threads and we need to contact the people who manages these servers to let them fire only one fork and one worker per session to avoid the usage of an extra database for the global variables in **app.py**. For the future we can make the **SuperAPI** query a bit more complex adding more data and more questions, and specifying more topics, but this is out of the scope of this web app. Hope you enjoy testing it and this work can be a starting point for more complete and ambitious projects.
  
  
