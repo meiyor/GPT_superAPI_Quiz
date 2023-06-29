@@ -30,20 +30,20 @@ def get_Quiz(correctness,prev_questions):
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
          if number_query<=10:
-           data = f'Write a (ONE) new question about general culture with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+           data = f'Write a (ONE) new question about general culture with {number_options} choices/answers specified with letters after the question, and SPECIFY the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
          else:
-           data = f'Write a (ONE) new, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+           data = f'Write a (ONE) new, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, and SPECIFY the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
      else:
-           data = f'Write a (ONE) new question about contemporary culture with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+           data = f'Write a (ONE) new question about contemporary culture with {number_options} choices/answers specified with letters after the question, and SPECIFY the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data =  f'Write a (ONE) new hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+         data =  f'Write a (ONE) new hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, and SPECIFY the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
        else:
-         data = f'Write a (ONE) new hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, and specify the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+         data = f'Write a (ONE) new hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, and SPECIFY the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
      else:
-         data =  f'Write a (ONE) VERY HARD! new question about any specific topic with {number_options} choices/answers specified with letters after the question, specificy the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
+         data =  f'Write a (ONE) VERY HARD! new question about any specific topic with {number_options} choices/answers specified with letters after the question, and SPECIFY the correct answer at the end of the text \n'+'Please do not repeat any of these following questions: '+ prev_question_string+ '\n'
   response = requests.post(url, headers=headers, data=data)
 
   ## if the fecth is done correctly process the message from the chatbox
