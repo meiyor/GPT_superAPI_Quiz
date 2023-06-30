@@ -15,10 +15,11 @@ def get_Quiz(correctness,prev_questions):
     'accept': 'text/plain',
     'Authorization': 'Bearer r:4449c8f1b107d6a6aea6c017ec071d9c',
     'Content-Type': 'text/plain', 'charset':'utf-8',
-    'model': "gpt-3.5-turbo",
-    'temperature': str(temperature), ## change the temperature parameter to make it more variable
     'Connection': 'close'
   }
+
+  data_model= {'model': "gpt-3.5-turbo",
+    'temperature': str(temperature)} ## change the temperature parameter to make it more variable}
 
   ## process the previous questions for not repeated the same question
   for ccount in range(0,len(prev_questions)):
@@ -70,9 +71,9 @@ def get_Quiz(correctness,prev_questions):
          data2 = f'Generate a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
          data2 =  f'Generate a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
-  response_ack = requests.post(url, headers=headers, data=data1)
+  response_ack = requests.post(url, headers=headers, json=data_model, data=data1)
   print(response_ack,'response_ack')
-  response = requests.post(url, headers=headers, data=data2)
+  response = requests.post(url, headers=headers, json=data_model, data=data2)
 
   ## if the fecth is done correctly process the message from the chatbox
   if response.status_code == 200:
