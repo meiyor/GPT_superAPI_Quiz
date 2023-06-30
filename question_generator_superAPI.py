@@ -15,11 +15,13 @@ def get_Quiz(correctness,prev_questions):
     'accept': 'text/plain',
     'Authorization': 'Bearer r:4449c8f1b107d6a6aea6c017ec071d9c',
     'Content-Type': 'text/plain', 'charset':'utf-8',
-    'Connection': 'close'
+    'model': "gpt-3.5-turbo",
+    'temperature': str(temperature), ## change the temperature parameter to make it more variable
+    'Connection': 'close'   
   }
 
   data_model= {'model': "gpt-3.5-turbo",
-    'temperature': str(temperature)} ## change the temperature parameter to make it more variable}
+    'temperature': str(temperature)} ## change the temperature parameter to make it more variable
 
   ## process the previous questions for not repeated the same question
   for ccount in range(0,len(prev_questions)):
@@ -59,7 +61,7 @@ def get_Quiz(correctness,prev_questions):
         if number_query<=10:
            data2 = f'Generate a NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n' 
         else:
-           data2 = f'Generate a NEW, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+           data2 = f'Generate a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
            data2 = f'Generate a NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
   else:
