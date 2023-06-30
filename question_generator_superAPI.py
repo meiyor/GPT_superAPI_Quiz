@@ -6,7 +6,9 @@ indices=[]
 def get_Quiz(correctness,prev_questions):
   #resp = "Wait until the Quiz is loaded..\n"
   prev_question_string = ""
-
+  temperature=random.uniform(0,1)
+  if temperature<=0.5
+     temperature=temperature+0.5
   ## request connection with SuperAPI interface 
   url = 'https://superapi.ai/v2/juan-manuelmayor-torres/chat-quiz'
   headers = {
@@ -14,7 +16,7 @@ def get_Quiz(correctness,prev_questions):
     'Authorization': 'Bearer r:4449c8f1b107d6a6aea6c017ec071d9c',
     'Content-Type': 'text/plain', 'charset':'utf-8',
     'model': "gpt-3.5-turbo",
-    'temperature': str(random.uniform(0,1)), ## change the temperature parameter to make it more variable
+    'temperature': str(temperature), ## change the temperature parameter to make it more variable
     'Connection': 'close'
   }
 
