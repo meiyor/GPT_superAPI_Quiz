@@ -7,7 +7,7 @@ def get_Quiz(correctness,prev_questions):
   #resp = "Wait until the Quiz is loaded..\n"
   prev_question_string = ""
   temperature=random.uniform(0,1)
-  if temperature<=0.5
+  if temperature<=0.5:
      temperature=temperature+0.5
   ## request connection with SuperAPI interface 
   url = 'https://superapi.ai/v2/juan-manuelmayor-torres/chat-quiz'
