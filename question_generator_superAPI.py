@@ -13,6 +13,8 @@ def get_Quiz(correctness,prev_questions):
     'accept': 'text/plain',
     'Authorization': 'Bearer r:4449c8f1b107d6a6aea6c017ec071d9c',
     'Content-Type': 'text/plain', 'charset':'utf-8',
+    'model': "gpt-3.5-turbo",
+    'temperature': str(random.uniform(0,1)), ## change the temperature parameter to make it more variable
     'Connection': 'close'
   }
 
@@ -22,29 +24,53 @@ def get_Quiz(correctness,prev_questions):
      prev_question_string = prev_question_string+'\n -'+body_question[0]
 
   print(prev_question_string,'prev_question_string')  
-  
+
+  ## uncomment this if you want to make it a bit faster after you are accumulating questions
+  ##if correctness == 0:
+  ##   number_query=random.randint(0,20)
+  ##   if (number_query % 2) == 0:
+  ##       if number_query<=10:
+  ##         data = f'Generate a (ONE) NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##       else:
+  ##         data = f'Generate a (ONE) NEW, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+' and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##   else:
+  ##         data = f'Generate a (ONE) NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##else:
+  ##   number_query=random.randint(0,20)
+  ##   if (number_query % 2) == 0:
+  ##     if number_query<=10:
+  ##       data =  f'Generate a (ONE) NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##     else:
+  ##       data = f'Generate a (ONE) NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##   else:
+  ##       data =  f'Generate a (ONE) VERY HARD! NEW question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ## response = requests.post(url, headers=headers, data=data)  
+
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
+  data1 = 'DO NOT repeat or generate again any of the following questions: '+ prev_question_string+ '\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
-         if number_query<=10:
-           data = f'Write a (ONE) NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
-         else:
-           data = f'Write a (ONE) NEW, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+' and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+        if number_query<=10:
+           data2 = f'Generate a NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n' 
+        else:
+           data2 = f'Generate a NEW, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
-           data = f'Write a (ONE) NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+           data2 = f'Generate a NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data =  f'Write a (ONE) NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+         data2 =  f'Generate a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
        else:
-         data = f'Write a (ONE) NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+         data2 = f'Generate a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
-         data =  f'Write a (ONE) VERY HARD! NEW question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
-  response = requests.post(url, headers=headers, data=data)
+         data2 =  f'Generate a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
+  response_ack = requests.post(url, headers=headers, data=data1)
+  print(response_ack,'response_ack')
+  response = requests.post(url, headers=headers, data=data2)
 
   ## if the fecth is done correctly process the message from the chatbox
   if response.status_code == 200:
@@ -55,6 +81,7 @@ def get_Quiz(correctness,prev_questions):
          result=result[2:]
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
+      result = result.replace('Q:','')
       #result = result.replace('(','')
       if 'Correct' in result:
         if 'answer' in result:
@@ -72,9 +99,11 @@ def get_Quiz(correctness,prev_questions):
           result_separated=result
       ## look for indeces in the list that start with answer and divided in get_response
       #result=' '.join(result)
-      #print(result)
-      result_separated[1]=result_separated[1].replace('(','')
-      print(result_separated,'result_separated')
+      #print(result_separated,'result')
+      if len(result_separated)==2:
+          #result_separated[0]=result_separated[0].replace('(','')
+          result_separated[1]=result_separated[1].replace('(','')
+      #print(result_separated,'result_separated')
       #R=json.loads(result)
       #print(R)
       resp = "The question is loaded!\n"
