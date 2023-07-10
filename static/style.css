@@ -49,6 +49,14 @@ body {
    left: 85px;
 }
 
+.logo
+{
+   position: absolute;
+   bottom: 10px;
+   left: 80px;
+   max-width: 100%;
+   height: auto;
+}
 
 /* CONTENT IS CLOSE */
 .chatbox__support {
