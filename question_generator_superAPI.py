@@ -57,7 +57,7 @@ def get_Quiz(correctness,prev_questions):
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
-  data1 = 'DO NOT repeat or generate again none of the following questions: '+ prev_question_string+ '\n'
+  data1 = 'DO NOT repeat or generate again none of the following questions: '+ prev_question_string+ 'or similars\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
