@@ -9,9 +9,9 @@ def get_Quiz(correctness,prev_questions):
   prev_question_string = ""
   temperature=random.uniform(0,1)
   if temperature<=0.5:
-     temperature=temperature+0.85
-  if temperature > 1:
-     temperature=1
+     temperature=temperature+0.9
+  if temperature > 1.0:
+     temperature=1.0
   ## request connection with SuperAPI interface 
   url = 'https://superapi.ai/v2/juan-manuelmayor-torres/chat-quiz'
   headers = {
@@ -20,17 +20,24 @@ def get_Quiz(correctness,prev_questions):
     'Content-Type': 'text/plain', 'charset':'utf-8',
     'model': "gpt-3.5-turbo",
     'temperature': str(temperature), ## change the temperature parameter to make it more variable
+    'frequency_penalty': str(1.0),
+    'presence_penalty': str(1.0),
     'Connection': 'close'   
   }
 
   data_model= {'model': "gpt-3.5-turbo",
+    'frequency_penalty': str(0.8),
+    'presence_penalty': str(0.8),
     'temperature': str(temperature)} ## change the temperature parameter to make it more variable
 
   ## process the previous questions for not repeated the same question
   for ccount in range(0,len(prev_questions)):
      body_question=prev_questions[ccount].split('\n')
-     prev_question_string = prev_question_string+'\n -'+body_question[0]
-
+     if ccount == 0:
+           prev_question_string = prev_question_string+body_question[0]
+     else:
+           prev_question_string = prev_question_string+', '+body_question[0]
+  prev_question_string = prev_question_string+'\n'
   print(prev_question_string,'prev_question_string')  
 
   ## uncomment this if you want to make it a bit faster after you are accumulating questions
@@ -57,7 +64,7 @@ def get_Quiz(correctness,prev_questions):
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
-  data1 = 'DO NOT repeat or generate again any of the following questions: '+ prev_question_string+ 'or any similar\n'
+  data1 = 'DO NOT REPEAT ANY of the following questions: '+ prev_question_string+ '!\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
@@ -79,7 +86,8 @@ def get_Quiz(correctness,prev_questions):
 
   for attemp in range(10):
     try:
-        response_ack = requests.post(url, headers=headers, json=data_model, data=data1)
+        response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8'))
+        time.sleep(1)
         break
     except requests.exceptions.ChunkedEncodingError:
         time.sleep(1)
@@ -87,7 +95,8 @@ def get_Quiz(correctness,prev_questions):
   print(response_ack,'response_ack')
   for attemp in range(10):
     try:
-        response = requests.post(url, headers=headers, json=data_model, data=data2)
+        response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8'))
+        time.sleep(1)
         break
     except requests.exceptions.ChunkedEncodingError:
         time.sleep(1)
