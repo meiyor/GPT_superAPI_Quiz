@@ -34,55 +34,55 @@ def get_Quiz(correctness,prev_questions):
   for ccount in range(0,len(prev_questions)):
      body_question=prev_questions[ccount].split('\n')
      if ccount == 0:
-           prev_question_string = prev_question_string+body_question[0]
+           prev_question_string = prev_question_string+'-'+body_question[0]+'\n'
      else:
-           prev_question_string = prev_question_string+'or '+body_question[0]
-  prev_question_string = prev_question_string+'\n'
-  print(prev_question_string,'prev_question_string')  
+           prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
+  #prev_question_string = prev_question_string+'\n'
+  print(prev_question_string,'prev_question_string')
 
   ## uncomment this if you want to make it a bit faster after you are accumulating questions
   ##if correctness == 0:
   ##   number_query=random.randint(0,20)
   ##   if (number_query % 2) == 0:
   ##       if number_query<=10:
-  ##         data = f'Generate a (ONE) NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##         data = f'Write a (ONE) NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
   ##       else:
-  ##         data = f'Generate a (ONE) NEW, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+' and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##         data = f'Write a (ONE) NEW, easy, and random question with  {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+' and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
   ##   else:
-  ##         data = f'Generate a (ONE) NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##         data = f'Write a (ONE) NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
   ##else:
   ##   number_query=random.randint(0,20)
   ##   if (number_query % 2) == 0:
   ##     if number_query<=10:
-  ##       data =  f'Generate a (ONE) NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##       data =  f'Write a (ONE) NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
   ##     else:
-  ##       data = f'Generate a (ONE) NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##       data = f'Write a (ONE) NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
   ##   else:
-  ##       data =  f'Generate a (ONE) VERY HARD! NEW question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
+  ##       data =  f'Write a (ONE) VERY HARD! NEW question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'+'and please DO NOT repeat any of these following questions: '+ prev_question_string+ '\n'
   ## response = requests.post(url, headers=headers, data=data)  
 
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
-  data1 = 'DO NOT REPEAT ANY/NONE of the following questions: '+ prev_question_string+ '!\n'
+  data1 = 'DO NOT WRITE or REPEAT ANY of these following questions:'+ prev_question_string+'\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
         if number_query<=10:
-           data2 = f'Generate a NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n' 
+           data2 = f'Write a NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n' 
         else:
-           data2 = f'Generate a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+           data2 = f'Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
-           data2 = f'Generate a NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
+           data2 = f'Write a NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data2 =  f'Generate a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
+         data2 =  f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
        else:
-         data2 = f'Generate a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+         data2 = f'Write a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
-         data2 =  f'Generate a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
+         data2 =  f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
 
   for attemp in range(10):
     try:
