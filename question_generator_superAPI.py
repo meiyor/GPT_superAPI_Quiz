@@ -71,7 +71,7 @@ def get_Quiz(correctness,prev_questions):
         if number_query<=10:
            data2 = f'Write a NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n' 
         else:
-           data2 = f'Generate/Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+           data2 = f'Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
            data2 = f'Write a NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
   else:
@@ -80,7 +80,7 @@ def get_Quiz(correctness,prev_questions):
        if number_query<=10:
          data2 =  f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
        else:
-         data2 = f'Generate/Write a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+         data2 = f'Write a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
          data2 =  f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
 
