@@ -169,7 +169,7 @@ def predict():
     if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e'):
        count_questions=count_questions+1
     
-    if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions 
+    if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions: 
         if len(username)>0 and len(password)>0:
            ## check for ids
           for value in db.session.query(gpt_data.id).distinct():
