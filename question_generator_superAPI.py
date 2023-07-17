@@ -26,8 +26,8 @@ def get_Quiz(correctness,prev_questions):
   }
 
   data_model= {'model': "gpt-3.5-turbo",
-    'frequency_penalty': str(0.8),
-    'presence_penalty': str(0.8),
+    'frequency_penalty': str(1.0),
+    'presence_penalty': str(1.0),
     'temperature': str(temperature)} ## change the temperature parameter to make it more variable
 
   ## process the previous questions for not repeated the same question
@@ -36,7 +36,7 @@ def get_Quiz(correctness,prev_questions):
      if ccount == 0:
            prev_question_string = prev_question_string+body_question[0]
      else:
-           prev_question_string = prev_question_string+', '+body_question[0]
+           prev_question_string = prev_question_string+'or '+body_question[0]
   prev_question_string = prev_question_string+'\n'
   print(prev_question_string,'prev_question_string')  
 
@@ -64,7 +64,7 @@ def get_Quiz(correctness,prev_questions):
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
-  data1 = 'DO NOT REPEAT ANY of the following questions: '+ prev_question_string+ '!\n'
+  data1 = 'DO NOT REPEAT ANY/NONE of the following questions: '+ prev_question_string+ '!\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
