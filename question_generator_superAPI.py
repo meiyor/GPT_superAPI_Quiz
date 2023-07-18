@@ -21,8 +21,8 @@ def get_Quiz(correctness,prev_questions):
     'model': "gpt-3.5-turbo",
     'temperature': str(temperature), ## change the temperature parameter to make it more variable
     'frequency_penalty': str(1.0),
-    'presence_penalty': str(1.0)
-    #'Connection': 'close'   
+    'presence_penalty': str(1.0),
+    'Connection': 'close'   
   }
 
   data_model= {'model': "gpt-3.5-turbo",
@@ -64,7 +64,7 @@ def get_Quiz(correctness,prev_questions):
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
-  data1 = 'DO NOT WRITE ANY of these following questions:'+ prev_question_string+'\n'
+  data1 = 'DO NOT WRITE or REPEAT ANY of these following questions:'+ prev_question_string+'\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
@@ -84,18 +84,18 @@ def get_Quiz(correctness,prev_questions):
      else:
          data2 =  f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
 
-  for attemp in range(10):
-    try:
-        response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8'))
-        time.sleep(1)
-        break
-    except requests.exceptions.ChunkedEncodingError:
-        time.sleep(1)
+  #for attemp in range(10):
+  #  try:
+  #      response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8'))
+  #      time.sleep(1)
+  #      break
+  #  except requests.exceptions.ChunkedEncodingError:
+  #      time.sleep(1)
 
-  print(response_ack,'response_ack')
+  #print(response_ack,'response_ack')
   for attemp in range(10):
     try:
-        response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8'))
+        response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8')+data2.encode('utf-8').decode('utf-8'))
         time.sleep(1)
         break
     except requests.exceptions.ChunkedEncodingError:
