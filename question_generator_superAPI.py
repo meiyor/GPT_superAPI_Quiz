@@ -101,6 +101,7 @@ def get_Quiz(correctness,prev_questions):
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
       result = result.replace('Q:','')
+      result = result.replace(':','')
       #result = result.replace('(','')
       if 'Correct' in result:
         if 'answer' in result:
