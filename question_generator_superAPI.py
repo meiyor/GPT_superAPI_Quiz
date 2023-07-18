@@ -21,8 +21,8 @@ def get_Quiz(correctness,prev_questions):
     'model': "gpt-3.5-turbo",
     'temperature': str(temperature), ## change the temperature parameter to make it more variable
     'frequency_penalty': str(1.0),
-    'presence_penalty': str(1.0),
-    'Connection': 'close'   
+    'presence_penalty': str(1.0)
+    #'Connection': 'close'   
   }
 
   data_model= {'model': "gpt-3.5-turbo",
@@ -64,7 +64,7 @@ def get_Quiz(correctness,prev_questions):
   ## Adapts difficulty with two different types of queries grouping the previous question for no repeating a new question again for each session.
   ## if the previous question was answered correctly the difficult query is activated and more complicated topics are queried to SuperAPI
   number_options=random.randint(3,5)
-  data1 = 'DO NOT WRITE or REPEAT ANY of these following questions:'+ prev_question_string+'\n'
+  data1 = 'DO NOT WRITE ANY of these following questions:'+ prev_question_string+'\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
