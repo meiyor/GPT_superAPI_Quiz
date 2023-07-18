@@ -121,7 +121,10 @@ def get_Quiz(correctness,prev_questions):
       #print(result_separated,'result')
       if len(result_separated)==2:
           #result_separated[0]=result_separated[0].replace('(','')
-          result_separated[1] = result_separated[1].replace(':','')
+          count_char=result_separated[1].count(':')
+          if count_char>=2:
+             pos=result_separated[1].find(':')
+             result_separated[1][pos]=''
           if result_separated[1][2]=='(' or result_separated[1][1]=='(' or result_separated[1][0]=='(':
               result_separated[1]=result_separated[1].replace('(','')
       #print(result_separated,'result_separated')
