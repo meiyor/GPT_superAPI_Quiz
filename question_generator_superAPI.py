@@ -75,7 +75,7 @@ def get_Quiz(correctness,prev_questions):
 
       for attemp in range(10):
         try:
-            response_ack = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8'))
+            response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8'))
             time.sleep(1)
             break
         except requests.exceptions.ChunkedEncodingError:
