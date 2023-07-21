@@ -16,13 +16,13 @@ def get_Quiz(correctness,prev_questions):
   url = 'https://superapi.ai/v2/juan-manuelmayor-torres/chat-quiz'
   headers = {
     'accept': 'text/plain',
-    'Authorization': 'Bearer r:4449c8f1b107d6a6aea6c017ec071d9c',
+    'Authorization': 'Bearer r:4935e4b4f96860cab1f1e85efa67e6be',
     'Content-Type': 'text/plain', 'charset':'utf-8',
     'model': "gpt-3.5-turbo",
     'temperature': str(temperature), ## change the temperature parameter to make it more variable
     'frequency_penalty': str(1.0),
     'presence_penalty': str(1.0),
-    'Connection': 'close'   
+    'Connection': 'close'
   }
 
   data_model= {'model': "gpt-3.5-turbo",
@@ -59,7 +59,7 @@ def get_Quiz(correctness,prev_questions):
        if number_query<=10:
          data2 =  f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
        else:
-         data2 = f'Write a NEW hard/difficult random question {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+         data2 = f'Write a NEW hard/difficult random question with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
      else:
          data2 =  f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
   
