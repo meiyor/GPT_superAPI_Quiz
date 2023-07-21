@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, jsonify
 ## keep this  commented and run ngrok from a separate terminal it generates multiple errors running it inside the code
 #from flask_ngrok import  run_with_ngrok
 
+import time
+
 import subprocess
 
 import os
@@ -48,6 +50,9 @@ prev_questions = []
 username = []
 password = []
 correct_ans=[]
+time_start=0
+time_end=0
+time_values=[]
 
 number_questions=random.randint(3,15)
 
@@ -73,6 +78,7 @@ class gpt_data(db.Model):
     num_questions = db.Column(db.Integer, nullable=False)
     correctness = db.Column(Float,nullable=False)
     correct_answers = db.Column(db.PickleType, nullable=True)
+    time_taken = db.Column(db.PickleType, nullable=True)
     questions = db.Column(db.PickleType, nullable=True)
     
     def __hash__(self):
@@ -149,6 +155,11 @@ def ini():
 
 @app.post("/predict")
 def predict():
+    ## measure the time spend by the request
+    global time_end
+    time_end = time.time()
+    global time_values
+    global time_start
     global string_quiz
     global string_prev
     global count_questions
@@ -168,7 +179,9 @@ def predict():
     # TODO: check if text is valid
     if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e'):
        count_questions=count_questions+1
-    
+       print(time_end-time_start,'time_diff')
+       time_values.append(time_end-time_start)
+
     if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions: 
         if len(username)>0 and len(password)>0:
            ## check for ids
@@ -183,13 +196,15 @@ def predict():
           ## update the content of previous questions
           for i_data in range(0,len(prev_questions)):
               prev_questions_temp.append(prev_questions[i_data].replace('\n',' '))
-          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,time_replied=time_now,num_questions=number_questions,correctness=(correct_count/number_questions)*100,correct_answers=correct_ans,questions=prev_questions_temp)
+          GPT = gpt_data(id=id_data,username=username,password=password,correct_questions=correct_count,time_replied=time_now,num_questions=number_questions,correctness=(correct_count/number_questions)*100,time_taken=time_values,correct_answers=correct_ans,questions=prev_questions_temp)
           db.session.add(GPT)
           db.session.commit()
           number_questions=random.randint(3,15)
           #prev_questions = []
           count_questions = 0
           correct_count = 0
+          time_start=0
+          time_end=0
           string_prev=string_quiz[1]
           ids = []
           len_quiz=number_questions
@@ -236,6 +251,7 @@ def predict():
           count_questions = 0
           correct_count = 0
           correct_ans = []
+          time_values = []
  
     if count_questions < number_questions and not(text.lower() == 'no') and not(text.lower() == 'n'):
        prev_questions.append(string_quiz[0])
@@ -262,6 +278,8 @@ def predict():
     response = response.replace('\n', '<br/>') ## subtitute \n by <br\> for the html reading in the chat widget
     message =  {"answer": response}
     print(message,text,'message')
+    #if (len(correct_ans)<number_questions): #and not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'no') and not(text.lower() == 'n'):
+    time_start = time.time()
     return jsonify(message)
 
 if __name__ == "__main__":
@@ -275,4 +293,4 @@ if __name__ == "__main__":
    #browser.open(url)
    #url = 'http://127.0.0.1:5000'
    #browser.open_new(url)
-   app.run() #use_reloader=False)
+   app.run(port=5000,debug=True) #use_reloader=False)
