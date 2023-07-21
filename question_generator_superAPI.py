@@ -16,13 +16,13 @@ def get_Quiz(correctness,prev_questions):
   url = 'https://superapi.ai/v2/juan-manuelmayor-torres/chat-quiz'
   headers = {
     'accept': 'text/plain',
-    'Authorization': 'Bearer r:4935e4b4f96860cab1f1e85efa67e6be',
+    'Authorization': 'Bearer r:34a30d828729d2b75db89a9ce164f1b7',
     'Content-Type': 'text/plain', 'charset':'utf-8',
     'model': "gpt-3.5-turbo",
     'temperature': str(temperature), ## change the temperature parameter to make it more variable
     'frequency_penalty': str(1.0),
     'presence_penalty': str(1.0),
-    'Connection': 'close'
+    'Connection': 'close'   
   }
 
   data_model= {'model': "gpt-3.5-turbo",
@@ -39,35 +39,57 @@ def get_Quiz(correctness,prev_questions):
            prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
   #prev_question_string = prev_question_string+'\n'
   print(prev_question_string,'prev_question_string')
- 
+  
+  if len(prev_questions)>0:
+       last_question=prev_questions[len(prev_questions)-1].split('\n')
+  else:
+       last_question=''
   ## combine the queries depending on a random number
   number_selection = random.randint(0,1000)
   number_options=random.randint(3,5)
-  data1 = 'DO NOT WRITE or REPEAT ANY of these following questions:'+ prev_question_string+'\n'
+  data1 = 'DO NOT WRITE/REPEAT ANY of these following questions:'+ prev_question_string+'\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
         if number_query<=10:
-           data2 = f'Write a NEW question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n' 
+          if len(prev_questions)==0:
+              data2 = f'Write a NEW easy question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line \n'
+          else:
+              data2 = 'Write a NEW easy question, easier than this question: -' + last_question[0] + f', about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text  in a separate line \n'
         else:
-           data2 = f'Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+          if len(prev_questions)==0:
+              data2 = f'Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line\n'
+          else:
+              data2 = 'Write a NEW, easy, and random question, easier than this question: -' + last_question[0] + f', about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line \n'
      else:
-           data2 = f'Write a NEW question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
+          if len(prev_questions)==0:
+              data2 = f'Write a NEW easy question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line\n'
+          else:
+              data2 = 'Write a NEW easy question, easier than this question: -' + last_question[0] +  f', about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line \n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
-         data2 =  f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
+          if len(prev_questions)==0:
+              data2 = f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line \n'
+          else:
+              data2 = 'Write a NEW hard/difficult question, harder than this question: - ' + last_question[0] + f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line \n'
        else:
-         data2 = f'Write a NEW hard/difficult random question with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text \n'
+          if len(prev_questions)==0:
+              data2 = f'Write a NEW hard/difficult random question with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line \n'
+          else:
+              data2 = 'Write a NEW hard/difficult random question, harder than this question: - ' + last_question[0] + f', with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line \n'
      else:
-         data2 =  f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text \n'
-  
+          if len(prev_questions)==0:
+              data2 = f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line \n'
+          else:
+              data2 = 'Write a NEW VERY HARD! question, harder than this question: - ' + last_question[0] +  f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line \n'
+
   if (number_selection % 2) == 0:
       ## requests variation depending on the random number
       for attemp in range(10):
         try:
-            response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8'))
+            response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8').encode('latin-1','ignore').decode('utf-8'))
             time.sleep(1)
             break
         except requests.exceptions.ChunkedEncodingError:
@@ -75,7 +97,7 @@ def get_Quiz(correctness,prev_questions):
 
       for attemp in range(10):
         try:
-            response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8'))
+            response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8').encode('latin-1','ignore').decode('utf-8'))
             time.sleep(1)
             break
         except requests.exceptions.ChunkedEncodingError:
@@ -85,7 +107,7 @@ def get_Quiz(correctness,prev_questions):
       ## requests variation depending on the random number
       for attemp in range(10):
         try:
-            response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8')+data2.encode('utf-8').decode('utf-8'))
+            response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8').encode('latin-1','ignore').decode('utf-8')+data2.encode('utf-8').decode('utf-8').encode('latin-1','ignore').decode('utf-8'))
             time.sleep(1)
             break
         except requests.exceptions.ChunkedEncodingError:
@@ -100,6 +122,14 @@ def get_Quiz(correctness,prev_questions):
          result=result[2:]
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
+      result = result.replace('NEW QUESTION:','')
+      result = result.replace('NEW difficult question:','')
+      result = result.replace('NEW VERY HARD! question:','')
+      result = result.replace('NEW VERY HARD! QUESTION:','')
+      result = result.replace('NEW VERY HARD question:','')
+      result = result.replace('NEW easy question:','')
+      result = result.replace('NEW VERY HARD QUESTION:','')
+      result = result.replace('NEW hard/difficult question:','')
       result = result.replace('Q:','')
       #result = result.replace('(','')
       if 'Correct' in result:
@@ -124,9 +154,9 @@ def get_Quiz(correctness,prev_questions):
           count_char=result_separated[1].count(':')
           if count_char>=2:
              pos=result_separated[1].find(':')
-             result_separated[1][pos]=''
+             result_separated[1].replace(':','',1)
           if result_separated[1][2]=='(' or result_separated[1][1]=='(' or result_separated[1][0]=='(':
-              result_separated[1]=result_separated[1].replace('(','')
+                  result_separated[1]=result_separated[1].replace('(','')
       #print(result_separated,'result_separated')
       #R=json.loads(result)
       #print(R)
