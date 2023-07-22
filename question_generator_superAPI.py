@@ -25,16 +25,6 @@ def get_Quiz(correctness,prev_questions):
     'Connection': 'close'
   }
 
-  headers_opt = {
-    'accept': 'text/plain',
-    'Authorization': 'Bearer r:34a30d828729d2b75db89a9ce164f1b7',
-    'Content-Type': 'text/plain', 'charset':'utf-8',
-    'model': "gpt-3.5-turbo",
-    'temperature': str(temperature), ## change the temperature parameter to make it more variable
-    'frequency_penalty': str(1.0),
-    'presence_penalty': str(1.0)
-  }
-
   data_model= {'model': "gpt-3.5-turbo",
     'frequency_penalty': str(1.0),
     'presence_penalty': str(1.0),
@@ -55,7 +45,7 @@ def get_Quiz(correctness,prev_questions):
   else:
        last_question=''
   ## combine the queries depending on a random number
-  ##number_selection = random.randint(0,1000)
+  number_selection = random.randint(0,1000)+500
   number_options=random.randint(3,5)
   data1 = 'DO NOT WRITE ANY of these following questions:'+ prev_question_string+'\n'
   if correctness == 0:
@@ -95,32 +85,32 @@ def get_Quiz(correctness,prev_questions):
           else:
               data2 = 'Write a NEW VERY HARD! question, harder than this question: - ' + last_question[0] +  f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question \n'
 
-  #if (number_selection % 2) == 0:
+  if number_selection < 600:
       ## requests variation depending on the random number
-  #    for attemp in range(10):
-  #      try:
-  #          response_ack = requests.post(url, headers=headers_opt, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
-  #          time.sleep(1)
-  #          break
-  #      except requests.exceptions.ChunkedEncodingError:
-  #          time.sleep(1)
+      for attemp in range(10):
+        try:
+            response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
+            time.sleep(1)
+            break
+        except requests.exceptions.ChunkedEncodingError:
+            time.sleep(1)
 
-  #    for attemp in range(10):
-  #      try:
-  #          response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
-  #          time.sleep(1)
-  #          break
-  #      except requests.exceptions.ChunkedEncodingError:
-  #          time.sleep(1)
-  #    print(response_ack,'response_ack')
-  #else:
-  ## requests variation always do it together
-  for attemp in range(10):
-     try:
-         response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
-         time.sleep(1)
-         break
-     except requests.exceptions.ChunkedEncodingError:
+      for attemp in range(10):
+        try:
+            response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
+            time.sleep(1)
+            break
+        except requests.exceptions.ChunkedEncodingError:
+            time.sleep(1)
+      print(response_ack,'response_ack')
+  else:
+      ## requests variation depending on the random number
+      for attemp in range(10):
+        try:
+            response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
+            time.sleep(1)
+            break
+        except requests.exceptions.ChunkedEncodingError:
             time.sleep(1)
 
   ## if the fecth is done correctly process the message from the chatbox
