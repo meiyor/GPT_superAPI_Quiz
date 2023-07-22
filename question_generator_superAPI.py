@@ -53,37 +53,37 @@ def get_Quiz(correctness,prev_questions):
      if (number_query % 2) == 0:
         if number_query<=10:
           if len(prev_questions)==0:
-              data2 = f'Write a NEW easy question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question\n'
+              data2 = f'Write a NEW easy question about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question\n'
           else:
-              data2 = 'Write a NEW easy question, easier than this question: -' + last_question[0] + f', about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text  in a separate line, do not repeat the question\n'
+              data2 = 'Write a NEW easy question, easier than this question: -' + last_question[0] + f', about general culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text  in a new line, do not repeat this question\n'
         else:
           if len(prev_questions)==0:
-              data2 = f'Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line, , do not repeat the question\n'
+              data2 = f'Write a NEW, easy, and random question about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text in a new line, , do not repeat this question\n'
           else:
-              data2 = 'Write a NEW, easy, and random question, easier than this question: -' + last_question[0] + f', about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question \n'
+              data2 = 'Write a NEW, easy, and random question, easier than this question: -' + last_question[0] + f', about any specific topic with {number_options} choices/answers, specify the choices with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question \n'
      else:
           if len(prev_questions)==0:
-              data2 = f'Write a NEW easy question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question\n'
+              data2 = f'Write a NEW easy question about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question\n'
           else:
-              data2 = 'Write a NEW easy question, easier than this question: -' + last_question[0] +  f', about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeate the question \n'
+              data2 = 'Write a NEW easy question, easier than this question: -' + last_question[0] +  f', about contemporary culture with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeate this question \n'
   else:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
        if number_query<=10:
           if len(prev_questions)==0:
-              data2 = f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question \n'
+              data2 = f'Write a NEW hard/difficult question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question \n'
           else:
-              data2 = 'Write a NEW hard/difficult question, harder than this question: - ' + last_question[0] + f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question \n'
+              data2 = 'Write a NEW hard/difficult question, harder than this question: - ' + last_question[0] + f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question \n'
        else:
           if len(prev_questions)==0:
-              data2 = f'Write a NEW hard/difficult random question with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line,  do not repeat the question\n'
+              data2 = f'Write a NEW hard/difficult random question with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text in a new line,  do not repeat this question\n'
           else:
-              data2 = 'Write a NEW hard/difficult random question, harder than this question: - ' + last_question[0] + f', with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question \n'
+              data2 = 'Write a NEW hard/difficult random question, harder than this question: - ' + last_question[0] + f', with {number_options} choices/answers about any specific topic, specify the choices with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question \n'
      else:
           if len(prev_questions)==0:
-              data2 = f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, , do not repeat the question \n'
+              data2 = f'Write a NEW VERY HARD! question about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, , do not repeat this question \n'
           else:
-              data2 = 'Write a NEW VERY HARD! question, harder than this question: - ' + last_question[0] +  f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a separate line, do not repeat the question \n'
+              data2 = 'Write a NEW VERY HARD! question, harder than this question: - ' + last_question[0] +  f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question \n'
 
   if number_selection < 600:
       ## requests variation depending on the random number
@@ -131,6 +131,8 @@ def get_Quiz(correctness,prev_questions):
       result = result.replace('NEW VERY HARD QUESTION:','')
       result = result.replace('NEW hard/difficult question:','')
       result = result.replace('NEW hard/difficult QUESTION:','')
+      result = result.replace('NEW difficult random question:','')
+      result = result.replace('NEW HARD QUESTION:','')
       result = result.replace('NEW hard/difficult random question:','')
       result = result.replace('NEW hard/difficult random QUESTION:','')
       result = result.replace('Q:','')
