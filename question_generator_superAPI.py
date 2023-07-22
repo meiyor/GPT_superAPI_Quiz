@@ -47,7 +47,7 @@ def get_Quiz(correctness,prev_questions):
   ## combine the queries depending on a random number
   number_selection = random.randint(0,1000)+500
   number_options=random.randint(3,5)
-  data1 = 'DO NOT WRITE ANY of these following questions:'+ prev_question_string+'\n'
+  data1 = 'DO NOT WRITE/REPEAT ANY of these following questions:'+ prev_question_string+'\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
@@ -85,7 +85,7 @@ def get_Quiz(correctness,prev_questions):
           else:
               data2 = 'Write a NEW VERY HARD! question, harder than this question: - ' + last_question[0] +  f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question \n'
 
-  if number_selection < 600:
+  if number_selection < 550:
       ## requests variation depending on the random number
       for attemp in range(10):
         try:
