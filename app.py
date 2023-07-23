@@ -123,10 +123,12 @@ def ini():
     global prev_questions
     global correct_ans
     global correct_value
+    global time_values
 
     correct_value=0
     correct_ans=[]
     prev_questions = []
+    time_values=[]
     number_questions=random.randint(3,15)
     #text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
