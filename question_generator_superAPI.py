@@ -6,6 +6,8 @@ indices=[]
 
 def get_Quiz(correctness,prev_questions):
   #resp = "Wait until the Quiz is loaded..\n"
+  repetition='\n'
+  indicator_rep=1
   prev_question_string = ""
   temperature=random.uniform(0,1)
   if temperature<=0.5:
@@ -98,8 +100,24 @@ def get_Quiz(correctness,prev_questions):
 
       for attemp in range(10):
         try:
-            response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
-            time.sleep(1)
+            while indicator_rep==1:
+                response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+repetition)
+                time.sleep(1)
+                for ccount in range(0,len(prev_questions)):
+                      body_question=prev_questions[ccount].split('\n')
+                      if len(body_question[0])>0:
+                         #print(body_question[0],response.content.decode('utf8'),'response_interim')
+                         if not (response.content.decode('utf8').find(body_question[0])==-1):
+                            indicator_rep=1
+                            print(response.content.decode('utf8'),'in repetition')
+                            repetition='DO NOT repeat/write this question: -'+ body_question[0]
+                            break
+                         else:
+                            indicator_rep=0
+                      else:
+                            indicator_rep=0
+                if len(prev_questions)==0:
+                   indicator_rep=0
             break
         except requests.exceptions.ChunkedEncodingError:
             time.sleep(1)
@@ -108,8 +126,24 @@ def get_Quiz(correctness,prev_questions):
       ## requests variation depending on the random number
       for attemp in range(10):
         try:
-            response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
-            time.sleep(1)
+            while indicator_rep==1:
+                response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+repetition)
+                time.sleep(1)
+                for ccount in range(0,len(prev_questions)):
+                      body_question=prev_questions[ccount].split('\n')
+                      if len(body_question[0])>0:
+                         #print(body_question[0],response.content.decode('utf8'),'response_interim')
+                         if not (response.content.decode('utf8').find(body_question[0])==-1):
+                            indicator_rep=1
+                            print(response.content.decode('utf8'),'in repetition')
+                            repetition='DO NOT repeat/write this question: -'+ body_question[0]
+                            break
+                         else:
+                            indicator_rep=0
+                      else:
+                            indicator_rep=0
+                if len(prev_questions)==0:
+                   indicator_rep=0 
             break
         except requests.exceptions.ChunkedEncodingError:
             time.sleep(1)
