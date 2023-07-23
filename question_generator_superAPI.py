@@ -162,7 +162,8 @@ def get_Quiz(correctness,prev_questions):
           if count_char>=2:
              #pos=result_separated[1].find(':')
              result_separated[1].replace(':','')
-          if result_separated[1][2]=='(' or result_separated[1][1]=='(' or result_separated[1][0]=='(':
+          if len(result_separated[1])>0:
+              if result_separated[1][2]=='(' or result_separated[1][1]=='(' or result_separated[1][0]=='(':
                   result_separated[1]=result_separated[1].replace('(','')
       #print(result_separated,'result_separated')
       #R=json.loads(result)
