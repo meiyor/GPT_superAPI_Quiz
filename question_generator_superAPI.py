@@ -198,7 +198,7 @@ def get_Quiz(correctness,prev_questions):
       if len(result_separated)==2:
           #result_separated[0]=result_separated[0].replace('(','')
           count_char=result_separated[1].count(':')
-          if count_char>=2:
+          if count_char>=1:
              #pos=result_separated[1].find(':')
              result_separated[1].replace(':','')
           if len(result_separated[1])>0:
