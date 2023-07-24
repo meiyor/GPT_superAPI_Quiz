@@ -35,7 +35,7 @@ def get_Quiz(correctness,prev_questions):
   ## process the previous questions for not repeated the same question
   for ccount in range(0,len(prev_questions)):
      body_question=prev_questions[ccount].split('\n')
-     if len(body_question[0])>0:
+     if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
         if ccount == 0:
            prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
         else:
@@ -105,7 +105,7 @@ def get_Quiz(correctness,prev_questions):
                 time.sleep(1)
                 for ccount in range(0,len(prev_questions)):
                       body_question=prev_questions[ccount].split('\n')
-                      if len(body_question[0])>0:
+                      if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
                          if not (response.content.decode('utf8').find(body_question[0])==-1):
                             indicator_rep=1
@@ -131,7 +131,7 @@ def get_Quiz(correctness,prev_questions):
                 time.sleep(1)
                 for ccount in range(0,len(prev_questions)):
                       body_question=prev_questions[ccount].split('\n')
-                      if len(body_question[0])>0:
+                      if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
                          if not (response.content.decode('utf8').find(body_question[0])==-1):
                             indicator_rep=1
