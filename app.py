@@ -53,6 +53,7 @@ correct_ans=[]
 time_start=0
 time_end=0
 time_values=[]
+prev_text=''
 
 number_questions=random.randint(3,15)
 
@@ -172,6 +173,7 @@ def predict():
     global password
     global correct_ans
     global correct_value
+    global prev_text
     ## initialize correctness in 0
     correctness=correct_value
     ids=[]
@@ -224,7 +226,7 @@ def predict():
     else:
        if len(text)<=3 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text.lower() == 'no' or text.lower() == 'n':
           correctness=0
-       elif  text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah':
+       elif not(prev_text.lower() == 'yes') and not(prev_text.lower() == 'y') and not(prev_text.lower() == 'ye') and not(prev_text.lower() == 'yeah') and text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah':
           correct_value=correctness 
        else:
           correctness=0
@@ -280,6 +282,7 @@ def predict():
     response = response.replace('\n', '<br/>') ## subtitute \n by <br\> for the html reading in the chat widget
     message =  {"answer": response}
     print(message,text,'message')
+    prev_text=text
     #if (len(correct_ans)<number_questions): #and not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'no') and not(text.lower() == 'n'):
     time_start = time.time()
     return jsonify(message)
