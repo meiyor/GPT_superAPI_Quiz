@@ -92,15 +92,17 @@ def get_Quiz(correctness,prev_questions):
       ## requests variation depending on the random number
       for attemp in range(10):
         try:
+            time.sleep(0.01)  
             response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
             time.sleep(1)
             break
-        except requests.exceptions.ChunkedEncodingError:
+        except requests.exceptions.ChunkedEncodingError or request.exceptions.ConnectionError:
             time.sleep(1)
 
       for attemp in range(10):
         try:
             while indicator_rep==1:
+                time.sleep(0.01)
                 response = requests.post(url, headers=headers, json=data_model, data=data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+repetition)
                 time.sleep(1)
                 for ccount in range(0,len(prev_questions)):
@@ -119,7 +121,7 @@ def get_Quiz(correctness,prev_questions):
                 if len(prev_questions)==0:
                    indicator_rep=0
             break
-        except requests.exceptions.ChunkedEncodingError:
+        except requests.exceptions.ChunkedEncodingError or request.exceptions.ConnectionError:
             time.sleep(1)
       print(response_ack,'response_ack')
   else:
@@ -127,6 +129,7 @@ def get_Quiz(correctness,prev_questions):
       for attemp in range(10):
         try:
             while indicator_rep==1:
+                time.sleep(0.01)
                 response = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+data2.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore')+repetition)
                 time.sleep(1)
                 for ccount in range(0,len(prev_questions)):
@@ -145,7 +148,7 @@ def get_Quiz(correctness,prev_questions):
                 if len(prev_questions)==0:
                    indicator_rep=0 
             break
-        except requests.exceptions.ChunkedEncodingError:
+        except requests.exceptions.ChunkedEncodingError or request.exceptions.ConnectionError:
             time.sleep(1)
 
   ## if the fecth is done correctly process the message from the chatbox
