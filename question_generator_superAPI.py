@@ -109,7 +109,7 @@ def get_Quiz(correctness,prev_questions):
                       body_question=prev_questions[ccount].split('\n')
                       if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
-                         if not (response.content.decode('utf8').find(body_question[0])==-1):
+                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1):
                             indicator_rep=1
                             print(response.content.decode('utf8'),'in repetition')
                             repetition='DO NOT repeat/write this question: -'+ body_question[0]
@@ -136,7 +136,7 @@ def get_Quiz(correctness,prev_questions):
                       body_question=prev_questions[ccount].split('\n')
                       if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
-                         if not (response.content.decode('utf8').find(body_question[0])==-1):
+                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1):
                             indicator_rep=1
                             print(response.content.decode('utf8'),'in repetition')
                             repetition='DO NOT repeat/write this question: -'+ body_question[0]
