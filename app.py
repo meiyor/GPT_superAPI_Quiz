@@ -53,7 +53,7 @@ correct_ans=[]
 time_start=0
 time_end=0
 time_values=[]
-prev_text=''
+prev_text='    '
 
 number_questions=random.randint(3,15)
 
@@ -125,7 +125,9 @@ def ini():
     global correct_ans
     global correct_value
     global time_values
+    global prev_text
 
+    prev_text='    '
     correct_value=0
     correct_ans=[]
     prev_questions = []
@@ -181,12 +183,13 @@ def predict():
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
-    if not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'ok') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e'):
+    if not(text[0:3].lower() == 'yes') and not(text[0].lower() == 'y') and not(text[0:2].lower() == 'ok') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e'):
        count_questions=count_questions+1
        print(time_end-time_start,'time_diff')
        time_values.append(time_end-time_start)
 
-    if (text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah') and count_questions>=number_questions: 
+    print(text[0:1],'text')
+    if (text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah') and count_questions>=number_questions: 
         if len(username)>0 and len(password)>0:
            ## check for ids
           for value in db.session.query(gpt_data.id).distinct():
@@ -224,9 +227,9 @@ def predict():
     if text[0].lower() == string_prev[2].lower() or (text.lower() in string_prev.lower() and text.lower() == string_prev.lower()): ## evaluate correctness of the question before calling the request
          correctness=1
     else:
-       if len(text)<=3 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text.lower() == 'no' or text.lower() == 'n':
+       if len(text)<=4 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text[0:2].lower() == 'no' or text[0].lower() == 'n':
           correctness=0
-       elif not(prev_text.lower() == 'yes') and not(prev_text.lower() == 'y') and not(prev_text.lower() == 'ye') and not(prev_text.lower() == 'yeah') and text.lower() == 'yes' or text.lower() == 'y' or text.lower() == 'ok' or text.lower() == 'ye' or text.lower() == 'yeah':
+       elif not(prev_text[0:3].lower() == 'yes') and not(prev_text[0].lower() == 'y') and not(prev_text[0:2].lower() == 'ye') and not(prev_text[0:4].lower() == 'yeah') and text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah':
           correct_value=correctness 
        else:
           correctness=0
@@ -263,7 +266,7 @@ def predict():
     ## analyze only the prev question response
     st_prev=string_prev.split(':')
  
-    if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text.lower() == 'ok') and not(text.lower() == 'yes') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
+    if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text[0:2].lower() == 'ok') and not(text[0:3].lower() == 'yes') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n'):
          if '\n' in st_prev[1]:
             temp_prev=st_prev[1].split('\n')
             st_prev[1]=temp_prev[0]
@@ -276,7 +279,7 @@ def predict():
     print(string_prev,'message','count',count_questions)
     
     ##add the number of questions answered correctly
-    if count_questions > 0 and not(text.lower() == 'yes') and not(text.lower() == 'y') and not(text.lower() == 'no') and not(text.lower() == 'n'):
+    if count_questions > 0 and not(text[0:3].lower() == 'yes') and not(text[0].lower() == 'y') and  not(text[0:4].lower() == 'yeah') and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n'):
         response = response + f"\n You have answered {correct_count}/{number_questions} questions correctly!"
     
     response = response.replace('\n', '<br/>') ## subtitute \n by <br\> for the html reading in the chat widget

@@ -219,9 +219,9 @@ def get_Quiz(correctness,prev_questions):
 
 def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
   
-   if answer.lower()=='yes' or answer.lower()=='y' or answer.lower()=='yeah'  or answer.lower()=='ok':
+   if answer[0:3].lower()=='yes' or answer[0].lower()=='y' or answer[0:4].lower()=='yeah'  or answer[0:2].lower()=='ok':
       return(str(ccount+1)+'.'+string_quiz[0],correct_count)
-   elif answer.lower()=='no' or answer.lower()=='n':
+   elif answer[0:2].lower()=='no' or answer[0].lower()=='n':
       return('If you want to do another quiz please close and open the chatbox, or reply yes! If not \n End of the Quiz! closing the chatbox.\n',correct_count)
    else:
       ## look for the positions that start with answer with the ccount
