@@ -221,8 +221,8 @@ def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
   
    if answer[0:3].lower()=='yes' or answer[0].lower()=='y' or answer[0:4].lower()=='yeah'  or answer[0:2].lower()=='ok':
       return(str(ccount+1)+'.'+string_quiz[0],correct_count)
-   elif answer[0:2].lower()=='no' or answer[0].lower()=='n':
-      return('If you want to do another quiz please close and open the chatbox, or reply yes! If not \n End of the Quiz! closing the chatbox.\n',correct_count)
+   elif answer[0:2].lower()=='no' or answer[0].lower()=='n' or answer[0:3].lower()=='end':
+      return('Your answer was <b>no</b> or <b>end</b>..If you want to do another quiz please close and open the chatbox, or reply <b>yes</b>! \n If you do not want to continue, it is an End of the Quiz! closing the chatbox.\n',correct_count)
    else:
       ## look for the positions that start with answer with the ccount
       print(string_quiz,'string_quiz')
@@ -231,15 +231,15 @@ def get_response(answer,string_quiz,ccount,correct_count,len_quiz,string_prev):
       answers=string_quiz[0]
       print(answer,string_prev,'values')
       if answer[0].lower() == string_prev[2].lower() or (answer.lower() in string_prev.lower() and answer.lower() == string_prev.lower()): ## evaluate correctness of the question 
-         correct_answer='Correct! \n\n'
+         correct_answer='<b>Correct!</b> \n\n'
          correct_count=correct_count+1
       else:
-         correct_answer='Incorrect, the correct answer is '+answer_def+'\n\n'
+         correct_answer='Incorrect, the correct answer is <b>'+answer_def+'</b>\n\n'
 
       ## validate the end of the Quiz here
       if ccount >= len_quiz:
            rate_correctness=(correct_count/len_quiz)*100
-           d_answers=f'End of the Quiz! Your score was: {rate_correctness}% '+'\n reply yes and your information will be saved in the database..\n'
+           d_answers=f'End of the Quiz! Your score was: <b>{rate_correctness}%</b> '+'\n reply <b>yes</b> and your information will be saved in the database..\n'
            def_answer=correct_answer+d_answers
       else:
            d_answers=answers

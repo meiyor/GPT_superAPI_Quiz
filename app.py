@@ -154,7 +154,7 @@ def ini():
     string_prev=string_quiz[1]
     #prev_questions.append(string_quiz[0])
     len_quiz=number_questions
-    message =  {"answer": f"The quiz is ready! Want to start the {len_quiz} questions? reply yes or no."}
+    message =  {"answer": f"The quiz is ready! Want to start the {len_quiz} questions? reply <b>yes</b> or <b>no</b>."}
     print(message,'message')
     return jsonify(message)
 
@@ -188,7 +188,6 @@ def predict():
        print(time_end-time_start,'time_diff')
        time_values.append(time_end-time_start)
 
-    print(text[0:1],'text')
     if (text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah') and count_questions>=number_questions: 
         if len(username)>0 and len(password)>0:
            ## check for ids
@@ -215,11 +214,11 @@ def predict():
           string_prev=string_quiz[1]
           ids = []
           len_quiz=number_questions
-          message =  {"answer": f"Quiz is ready! Want to start the {len_quiz} questions? reply yes or no!"}
+          message =  {"answer": f"Quiz is ready! Want to start the {len_quiz} questions? reply <b>yes</b> or <b>no</b>!"}
           print(message,'message')
           return jsonify(message)
         else:
-          message =  {"answer": "Username and Password are empty! can't add it into the database"}
+          message =  {"answer": "Username and Password are <b>empty</b>! can't add it into the database"}
           print(message,'message')
           return jsonify(message)
 
@@ -230,15 +229,19 @@ def predict():
        if len(text)<=4 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text[0:2].lower() == 'no' or text[0].lower() == 'n':
           correctness=0
        elif not(prev_text[0:3].lower() == 'yes') and not(prev_text[0].lower() == 'y') and not(prev_text[0:2].lower() == 'ye') and not(prev_text[0:4].lower() == 'yeah') and text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah':
-          correct_value=correctness 
+          correct_value=correctness
+          if (prev_text[0:3].lower() == 'yes' or prev_text[0].lower() == 'y' or prev_text[0:2].lower() == 'ye' or prev_text[0:4].lower() == 'yeah') and (text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah'):
+             message = {"answer": f"Please select a valid option!! You have repeated <b>yes</b>! \n"}
+             print(message,'message') 
+             return jsonify(message)
        else:
           correctness=0
-          message = {"answer": "Please select a valid option!!\n"}
+          message = {"answer": f"Please select a valid option!! Input <b>{text}</b> is not accepted! \n"}
           print(message,'message') 
           return jsonify(message)
            
     correct_value=correctness
-    if not(text.lower() == 'no') and not(text.lower() == 'n'):
+    if not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
         ## validation of the request
         string_quiz=get_Quiz(correctness,prev_questions)
         while string_quiz=="Error":
@@ -253,20 +256,20 @@ def predict():
            string_quiz=get_Quiz(correctness,prev_questions)
            str_temp=string_quiz[1].split(':')
      
-    if text.lower() == 'no' or text.lower() == 'n':
+    if text[0:2].lower() == 'no' or text[0].lower() == 'n' or text[0:3].lower() == 'end' :
           prev_questions = []
           count_questions = 0
           correct_count = 0
           correct_ans = []
           time_values = []
  
-    if count_questions < number_questions and not(text.lower() == 'no') and not(text.lower() == 'n'):
+    if count_questions < number_questions and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
        prev_questions.append(string_quiz[0])
 
     ## analyze only the prev question response
     st_prev=string_prev.split(':')
  
-    if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text[0:2].lower() == 'ok') and not(text[0:3].lower() == 'yes') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n'):
+    if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text[0:2].lower() == 'ok') and not(text[0:3].lower() == 'yes') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
          if '\n' in st_prev[1]:
             temp_prev=st_prev[1].split('\n')
             st_prev[1]=temp_prev[0]
@@ -279,7 +282,7 @@ def predict():
     print(string_prev,'message','count',count_questions)
     
     ##add the number of questions answered correctly
-    if count_questions > 0 and not(text[0:3].lower() == 'yes') and not(text[0].lower() == 'y') and  not(text[0:4].lower() == 'yeah') and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n'):
+    if count_questions > 0 and not(text[0:3].lower() == 'yes') and not(text[0].lower() == 'y') and  not(text[0:4].lower() == 'yeah') and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
         response = response + f"\n You have answered {correct_count}/{number_questions} questions correctly!"
     
     response = response.replace('\n', '<br/>') ## subtitute \n by <br\> for the html reading in the chat widget
