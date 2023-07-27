@@ -263,7 +263,7 @@ def predict():
     ## analyze only the prev question response
     st_prev=string_prev.split(':')
  
-    if not('yes' in text) and not('y' in text) and not(text.lower() == 'ok') and not(text.lower() == 'yes') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
+    if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text.lower() == 'ok') and not(text.lower() == 'yes') and not(text.lower() == 'ye') and not(text.lower() == 'yeah') and len(text)<=3 and not(text.lower() == 'no') and not(text.lower() == 'n'):
          if '\n' in st_prev[1]:
             temp_prev=st_prev[1].split('\n')
             st_prev[1]=temp_prev[0]
