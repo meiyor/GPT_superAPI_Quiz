@@ -183,7 +183,7 @@ def predict():
     text =  request.get_json().get("message")
     #string_quiz=get_Quiz()
     # TODO: check if text is valid
-    if not(text[0:3].lower() == 'yes') and not(text[0].lower() == 'y') and not(text[0:2].lower() == 'ok') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e'):
+    if not(text[0:3].lower() == 'yes') and not(text[0].lower() == 'y') and not(text[0:2].lower() == 'ok') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') and len(text)<=2:
        count_questions=count_questions+1
        print(time_end-time_start,'time_diff')
        time_values.append(time_end-time_start)
@@ -226,7 +226,7 @@ def predict():
     if text[0].lower() == string_prev[2].lower() or (text.lower() in string_prev.lower() and text.lower() == string_prev.lower()): ## evaluate correctness of the question before calling the request
          correctness=1
     else:
-       if len(text)<=4 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text[0:2].lower() == 'no' or text[0].lower() == 'n':
+       if len(text)<=2 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text[0:2].lower() == 'no' or text[0].lower() == 'n':
           correctness=0
        elif not(prev_text[0:3].lower() == 'yes') and not(prev_text[0].lower() == 'y') and not(prev_text[0:2].lower() == 'ye') and not(prev_text[0:4].lower() == 'yeah') and text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah':
           correct_value=correctness
