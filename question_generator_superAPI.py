@@ -50,7 +50,7 @@ def get_Quiz(correctness,prev_questions):
   ## combine the queries depending on a random number
   number_selection = random.randint(0,1000)+500
   number_options=random.randint(3,5)
-  data1 = 'DO NOT WRITE/REPEAT ANY of the following questions or similars:'+ prev_question_string+'\n'
+  data1 = 'DO NOT WRITE/REPEAT ANY of the following questions:'+ prev_question_string+'\n'
   if correctness == 0:
      number_query=random.randint(0,20)
      if (number_query % 2) == 0:
