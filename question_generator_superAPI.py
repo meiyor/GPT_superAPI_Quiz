@@ -4,6 +4,19 @@ import time
 string_quiz=[]
 indices=[]
 
+def compare_strings(string_A,string_B):
+     string_sep=string_A.split(' ')
+     all_string=string_B.split(' ')
+     list_result=[]
+     for i_index in range(0,len(string_sep)):
+        if string_sep[i_index] in string_B:
+           list_result.append(string_sep[i_index])
+     if len(list_result)>=len(all_string)-2:
+         val=True
+     else:
+         val=False
+     return val
+
 def get_Quiz(correctness,prev_questions):
   #resp = "Wait until the Quiz is loaded..\n"
   repetition='\n'
@@ -109,7 +122,7 @@ def get_Quiz(correctness,prev_questions):
                       body_question=prev_questions[ccount].split('\n')
                       if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
-                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1):
+                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
                             print(response.content.decode('utf8'),'in repetition')
                             repetition='DO NOT repeat/write this question: -'+ body_question[0]
@@ -136,7 +149,7 @@ def get_Quiz(correctness,prev_questions):
                       body_question=prev_questions[ccount].split('\n')
                       if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
-                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1):
+                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
                             print(response.content.decode('utf8'),'in repetition')
                             repetition='DO NOT repeat/write this question: -'+ body_question[0]
@@ -161,6 +174,10 @@ def get_Quiz(correctness,prev_questions):
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
       result = result.replace('NEW QUESTION:','')
+      result = result.replace('(correct','')
+      result = result.replace('(correct)','')
+      result = result.replace('(Correct','')
+      result = result.replace('(Correct)','')
       result = result.replace('NEW question:','')
       result = result.replace('NEW difficult question:','')
       result = result.replace('NEW VERY HARD! question:','')

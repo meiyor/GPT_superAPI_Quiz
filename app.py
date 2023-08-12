@@ -228,7 +228,7 @@ def predict():
     else:
        if len(text)<=2 and (text[0].lower() == 'a' or text[0].lower() == 'b' or text[0].lower() == 'c' or text[0].lower() == 'd' or text[0].lower() == 'e') or text[0:2].lower() == 'no' or text[0].lower() == 'n':
           correctness=0
-       elif not(prev_text[0:3].lower() == 'yes') and not(prev_text[0].lower() == 'y') and not(prev_text[0:2].lower() == 'ye') and not(prev_text[0:4].lower() == 'yeah') and text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah':
+       elif (not(prev_text[0:3].lower() == 'yes') and not(prev_text[0].lower() == 'y') and not(prev_text[0:2].lower() == 'ye') and not(prev_text[0:4].lower() == 'yeah')) and (text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah'):
           correct_value=correctness
           if (prev_text[0:3].lower() == 'yes' or prev_text[0].lower() == 'y' or prev_text[0:2].lower() == 'ye' or prev_text[0:4].lower() == 'yeah') and (text[0:3].lower() == 'yes' or text[0].lower() == 'y' or text[0:2].lower() == 'ok' or text[0:2].lower() == 'ye' or text[0:4].lower() == 'yeah'):
              message = {"answer": f"Please select a valid option!! You have repeated <b>yes</b>! \n"}
