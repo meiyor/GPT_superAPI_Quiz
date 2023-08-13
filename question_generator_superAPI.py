@@ -13,7 +13,7 @@ def compare_strings(string_A,string_B):
            #print(string_sep[i_index],string_B,'repetition val')
            list_result.append(string_sep[i_index])
      #print(all_string,string_sep,'all_string')
-     print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
+     #print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
      if len(list_result)>=len(string_sep)-10:
          val=True
      else:
