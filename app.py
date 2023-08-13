@@ -264,7 +264,9 @@ def predict():
           time_values = []
  
     if count_questions < number_questions and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
+       #print('question',string_quiz[0])
        prev_questions.append(string_quiz[0])
+
 
     ## analyze only the prev question response
     st_prev=string_prev.split(':')
