@@ -51,11 +51,16 @@ def get_Quiz(correctness,prev_questions):
   ## process the previous questions for not repeated the same question
   for ccount in range(0,len(prev_questions)):
      body_question=prev_questions[ccount].split('\n')
-     #if len(body_question[0])>0: #and not(body_question[0]=='\n') and not(body_question[0]==' '):
-     if ccount == 0:
-        prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
+     if len(body_question[0])>0: #and not(body_question[0]=='\n') and not(body_question[0]==' '):
+       if ccount == 0:
+          prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
+       else:
+          prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
      else:
-        prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
+       if ccount == 0:
+          prev_question_string = prev_question_string+' or -'+body_question[1]+'\n'
+       else:
+          prev_question_string = prev_question_string+' or -'+body_question[1]+'\n'
   #prev_question_string = prev_question_string+'\n'
   print(prev_question_string,'prev_question_string')
   
