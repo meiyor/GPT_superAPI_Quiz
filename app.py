@@ -274,7 +274,10 @@ def predict():
     if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text[0:2].lower() == 'ok') and not(text[0:3].lower() == 'yes') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
          if '\n' in st_prev[1]:
             temp_prev=st_prev[1].split('\n')
-            st_prev[1]=temp_prev[0]
+            if not(temp_prev[0]=='\n') and not(temp_prev[0]==' '):
+                st_prev[1]=temp_prev[0]
+            else:
+                st_prev[1]=temp_prev[1]
          correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
     #else: ## do not need to append if  the condition is not achieved
     #    correct_ans.append("")
