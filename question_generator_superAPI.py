@@ -57,10 +57,16 @@ def get_Quiz(correctness,prev_questions):
        else:
           prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
      else:
-       if ccount == 0:
-          prev_question_string = prev_question_string+' or -'+body_question[1]+'\n'
+       if len(body_question[1])>0 and not(body_question[1]=='\n') and not(body_question[1]==' '):
+          if ccount == 0:
+              prev_question_string = prev_question_string+' or -'+body_question[1]+'\n'
+          else:
+              prev_question_string = prev_question_string+' or -'+body_question[1]+'\n'
        else:
-          prev_question_string = prev_question_string+' or -'+body_question[1]+'\n'
+          if ccount == 0:
+              prev_question_string = prev_question_string+' or -'+body_question[2]+'\n'
+          else:
+              prev_question_string = prev_question_string+' or -'+body_question[2]+'\n'
   #prev_question_string = prev_question_string+'\n'
   print(prev_question_string,'prev_question_string')
   

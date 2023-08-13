@@ -269,12 +269,13 @@ def predict():
 
 
     ## analyze only the prev question response
+    string_prev.replace('\n','')
     st_prev=string_prev.split(':')
  
     if not('yes' in text) and not('y' in text) and not('yeah' in text) and not(text[0:2].lower() == 'ok') and not(text[0:3].lower() == 'yes') and not(text[0:2].lower() == 'ye') and not(text[0:4].lower() == 'yeah') and len(text)<=4 and not(text[0:2].lower() == 'no') and not(text[0].lower() == 'n') and not(text[0:3].lower() == 'end'):
          if '\n' in st_prev[1]:
             temp_prev=st_prev[1].split('\n')
-            if not(temp_prev[0]=='\n') and not(temp_prev[0]==' '):
+            if len(temp_prev[0])>0 and not(temp_prev[0]=='\n') and not(temp_prev[0]==' '):
                 st_prev[1]=temp_prev[0]
             else:
                 st_prev[1]=temp_prev[1]
