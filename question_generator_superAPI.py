@@ -14,7 +14,7 @@ def compare_strings(string_A,string_B):
            list_result.append(string_sep[i_index])
      #print(all_string,string_sep,'all_string')
      #print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
-     if len(list_result)>=len(string_sep)-10:
+     if len(list_result)>=len(string_sep)-int(len(string_sep)/2):
          val=True
      else:
          val=False
@@ -133,7 +133,7 @@ def get_Quiz(correctness,prev_questions):
                          if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
                             print(response.content.decode('utf8'),body_question[0],'in repetition')
-                            repetition='\n DO NOT repeat/write this question: -'+ response.content.decode('utf8').lower()
+                            repetition='DO NOT repeat/write this question: *'+ body_question[0]
                             break
                          else:
                             indicator_rep=0
@@ -160,7 +160,7 @@ def get_Quiz(correctness,prev_questions):
                          if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
                             print(response.content.decode('utf8'),body_question[0],'in repetition')
-                            repetition='\n DO NOT repeat/write this question: -'+ response.content.decode('utf8').lower()
+                            repetition='DO NOT repeat/write this question: *'+ body_question[0]
                             break
                          else:
                             indicator_rep=0
