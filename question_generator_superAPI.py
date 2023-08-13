@@ -10,8 +10,11 @@ def compare_strings(string_A,string_B):
      list_result=[]
      for i_index in range(0,len(string_sep)):
         if string_sep[i_index] in string_B:
+           #print(string_sep[i_index],string_B,'repetition val')
            list_result.append(string_sep[i_index])
-     if len(list_result)>=len(all_string)-2:
+     #print(all_string,string_sep,'all_string')
+     print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
+     if len(list_result)>=len(string_sep)-10:
          val=True
      else:
          val=False
@@ -105,7 +108,7 @@ def get_Quiz(correctness,prev_questions):
       ## requests variation depending on the random number
       for attemp in range(10):
         try:
-            time.sleep(0.01)  
+            time.sleep(0.01)
             response_ack = requests.post(url, headers=headers, json=data_model, data=data1.encode('utf-8').decode('utf-8','ignore').encode('latin-1','ignore').decode('utf-8','ignore'))
             time.sleep(1)
             break
@@ -124,7 +127,7 @@ def get_Quiz(correctness,prev_questions):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
                          if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
-                            print(response.content.decode('utf8'),'in repetition')
+                            print(response.content.decode('utf8'),body_question[0],'in repetition')
                             repetition='DO NOT repeat/write this question: -'+ body_question[0]
                             break
                          else:
@@ -151,7 +154,7 @@ def get_Quiz(correctness,prev_questions):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
                          if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
-                            print(response.content.decode('utf8'),'in repetition')
+                            print(response.content.decode('utf8'),body_question[0],'in repetition')
                             repetition='DO NOT repeat/write this question: -'+ body_question[0]
                             break
                          else:
