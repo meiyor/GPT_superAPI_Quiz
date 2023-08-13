@@ -51,11 +51,11 @@ def get_Quiz(correctness,prev_questions):
   ## process the previous questions for not repeated the same question
   for ccount in range(0,len(prev_questions)):
      body_question=prev_questions[ccount].split('\n')
-     if len(body_question[0])>0: #and not(body_question[0]=='\n') and not(body_question[0]==' '):
-        if ccount == 0:
-           prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
-        else:
-           prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
+     #if len(body_question[0])>0: #and not(body_question[0]=='\n') and not(body_question[0]==' '):
+     if ccount == 0:
+        prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
+     else:
+        prev_question_string = prev_question_string+' or -'+body_question[0]+'\n'
   #prev_question_string = prev_question_string+'\n'
   print(prev_question_string,'prev_question_string')
   
@@ -128,7 +128,7 @@ def get_Quiz(correctness,prev_questions):
                          if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
                             print(response.content.decode('utf8'),body_question[0],'in repetition')
-                            repetition='DO NOT repeat/write this question: -'+ body_question[0]
+                            repetition='\n DO NOT repeat/write this question: -'+ response.content.decode('utf8').lower()
                             break
                          else:
                             indicator_rep=0
@@ -155,7 +155,7 @@ def get_Quiz(correctness,prev_questions):
                          if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
                             indicator_rep=1
                             print(response.content.decode('utf8'),body_question[0],'in repetition')
-                            repetition='DO NOT repeat/write this question: -'+ body_question[0]
+                            repetition='\n DO NOT repeat/write this question: -'+ response.content.decode('utf8').lower()
                             break
                          else:
                             indicator_rep=0
