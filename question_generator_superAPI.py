@@ -14,7 +14,7 @@ def compare_strings(string_A,string_B):
            list_result.append(string_sep[i_index])
      #print(all_string,string_sep,'all_string')
      #print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
-     if len(list_result)>=len(string_sep)-int(len(string_sep)/2):
+     if len(list_result)>=len(string_sep)-int(len(string_sep)/1.5):
          val=True
      else:
          val=False
