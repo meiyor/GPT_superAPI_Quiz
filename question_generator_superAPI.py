@@ -14,7 +14,8 @@ def compare_strings(string_A,string_B):
            list_result.append(string_sep[i_index])
      #print(all_string,string_sep,'all_string')
      #print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
-     if len(list_result)>=len(string_sep)-int(len(string_sep)/1.5):
+     ## don't detect the similars and do not repeat them use -1 when the strings in the questions are equal
+     if len(list_result)>=len(string_sep)-int(len(string_sep)/3): #int(len(string_sep)/1.5):
          val=True
      else:
          val=False
@@ -136,9 +137,10 @@ def get_Quiz(correctness,prev_questions):
                       body_question=prev_questions[ccount].split('\n')
                       if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
-                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
+                         string_question=response.content.decode('utf8').lower().split('a)')
+                         if not (string_question[0].find(body_question[0].lower())==-1) or compare_strings(string_question[0],body_question[0].lower()):
                             indicator_rep=1
-                            print(response.content.decode('utf8'),body_question[0],'in repetition')
+                            print(string_question[0],body_question[0],'in repetition')
                             repetition='DO NOT repeat/write this question: *'+ body_question[0]
                             break
                          else:
@@ -162,10 +164,11 @@ def get_Quiz(correctness,prev_questions):
                 for ccount in range(0,len(prev_questions)):
                       body_question=prev_questions[ccount].split('\n')
                       if len(body_question[0])>0 and not(body_question[0]=='\n') and not(body_question[0]==' '):
+                         string_question=response.content.decode('utf8').lower().split('a)')
                          #print(body_question[0],response.content.decode('utf8'),'response_interim')
-                         if not (response.content.decode('utf8').lower().find(body_question[0].lower())==-1) or compare_strings(response.content.decode('utf8').lower(),body_question[0].lower()):
+                         if not (string_question[0].find(body_question[0].lower())==-1) or compare_strings(string_question[0],body_question[0].lower()):
                             indicator_rep=1
-                            print(response.content.decode('utf8'),body_question[0],'in repetition')
+                            print(string_question[0],body_question[0],'in repetition')
                             repetition='DO NOT repeat/write this question: *'+ body_question[0]
                             break
                          else:
