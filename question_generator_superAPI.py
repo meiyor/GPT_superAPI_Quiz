@@ -204,6 +204,7 @@ def get_Quiz(correctness,prev_questions):
       result = result.replace('NEW VERY HARD question:','')
       result = result.replace('NEW easy question:','')
       result = result.replace('NEW VERY HARD QUESTION:','')
+      result = result.replace('NEW/difficult random question:','')
       result = result.replace('NEW hard/difficult question:','')
       result = result.replace('NEW hard/difficult QUESTION:','')
       result = result.replace('NEW EASY QUESTION:','')
