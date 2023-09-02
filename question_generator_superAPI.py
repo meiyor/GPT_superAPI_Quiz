@@ -191,8 +191,6 @@ def get_Quiz(correctness,prev_questions):
       result = result.replace('The correct answer is','Correct answer:')
       result = result.replace('Question:','')
       result = result.replace('NEW QUESTION:','')
-      #result = result.replace('correct','Correct answer:')
-      #result = result.replace('Correct','Correct answer:')
       result = result.replace('(correct)','')
       result = result.replace('(Correct)','')
       result = result.replace('(Correct Answer)','')
