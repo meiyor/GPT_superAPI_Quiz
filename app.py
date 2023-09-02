@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 
-## keep this  commented and run ngrok from a separate terminal it generates multiple errors running it inside the code
+## keep this commented and run ngrok from a separate terminal it generates multiple errors running it inside the code
 #from flask_ngrok import  run_with_ngrok
 
 import time
