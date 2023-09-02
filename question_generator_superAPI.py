@@ -217,7 +217,6 @@ def get_Quiz(correctness,prev_questions):
       result = result.replace('NEW hard/difficult random question:','')
       result = result.replace('NEW hard/difficult random QUESTION:','')
       result = result.replace('Q:','')
-      #result = result.replace('(','')
       if 'Correct' in result:
         if 'answer' in result:
           result_separated=result.split('Correct answer')
