@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 
-## keep this commented and run ngrok from a separate terminal it generates multiple errors running it inside the code
+## keep this  commented and run ngrok from a separate terminal it generates multiple errors running it inside the code
 #from flask_ngrok import  run_with_ngrok
 
 import time
@@ -24,10 +24,6 @@ from sqlalchemy import Float
 from sqlalchemy.sql import func
 
 import datetime
-
-#from flask import session
-
-#from pyngrok import conf
 
 #global string_quiz do it inside each Flask function
 # create always a new connection with ngrok using an endpoint in separate file. This file will be read by app.js
@@ -194,7 +190,6 @@ def predict():
           for value in db.session.query(gpt_data.id).distinct():
                 ids.append(value[0])
           ##database update
-          ##print(ids,'ids')
           id_data=random.randint(0,5000)
           while id_data in ids:
                  id_data=random.randint(0,5000)
@@ -280,8 +275,6 @@ def predict():
             else:
                 st_prev[1]=temp_prev[1]
          correct_ans.append(str(correctness)+'=> reply: '+text+' correct answer: '+st_prev[1])
-    #else: ## do not need to append if  the condition is not achieved
-    #    correct_ans.append("")
 
     response, correct_count = get_response(text,string_quiz,count_questions,correct_count,number_questions,string_prev)
     string_prev = string_quiz[1]

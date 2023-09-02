@@ -12,8 +12,6 @@ def compare_strings(string_A,string_B):
         if string_sep[i_index] in string_B:
            #print(string_sep[i_index],string_B,'repetition val')
            list_result.append(string_sep[i_index])
-     #print(all_string,string_sep,'all_string')
-     #print(len(list_result),len(all_string),len(string_sep),'lengths_comparison')
      ## don't detect the similars and do not repeat them use -1 when the strings in the questions are equal
      if len(list_result)>=len(string_sep)-int(len(string_sep)/3): #int(len(string_sep)/1.5):
          val=True
@@ -31,7 +29,7 @@ def get_Quiz(correctness,prev_questions):
      temperature=temperature+0.75
   if temperature > 1.0:
      temperature=1.0
-  ## request connection with SuperAPI interface 
+  ## request connection with SuperAPI interface
   url = 'https://superapi.ai/v2/juan-manuelmayor-torres/chat-quiz'
   headers = {
     'accept': 'text/plain',
@@ -235,8 +233,6 @@ def get_Quiz(correctness,prev_questions):
         else:
           result_separated=result
       ## look for indeces in the list that start with answer and divided in get_response
-      #result=' '.join(result)
-      #print(result_separated,'result')
       if len(result_separated)==2:
           #result_separated[0]=result_separated[0].replace('(','')
           count_char=result_separated[1].count(':')
@@ -246,9 +242,7 @@ def get_Quiz(correctness,prev_questions):
           if len(result_separated[1])>0:
               if result_separated[1][2]=='(' or result_separated[1][1]=='(' or result_separated[1][0]=='(':
                   result_separated[1]=result_separated[1].replace('(','')
-      #print(result_separated,'result_separated')
-      #R=json.loads(result)
-      #print(R)
+
       resp = "The question is loaded!\n"
       print(resp)
       return result_separated
