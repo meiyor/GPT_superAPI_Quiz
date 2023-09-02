@@ -28,7 +28,7 @@ def get_Quiz(correctness,prev_questions):
   prev_question_string = ""
   temperature=random.uniform(0,1)
   if temperature<=0.5:
-     temperature=temperature+0.85
+     temperature=temperature+0.75
   if temperature > 1.0:
      temperature=1.0
   ## request connection with SuperAPI interface 
