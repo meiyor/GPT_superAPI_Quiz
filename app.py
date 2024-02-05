@@ -15,7 +15,9 @@ import random
 
 from flask_cors import CORS
 
-from question_generator_superAPI import get_response, get_Quiz
+#from question_generator_superAPI import get_response, get_Quiz
+
+from question_generator_chatGPT import get_response, get_Quiz
 
 from flask_sqlalchemy import SQLAlchemy
 
