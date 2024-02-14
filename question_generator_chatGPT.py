@@ -33,7 +33,7 @@ def get_Quiz(correctness,prev_questions):
   ## request connection with ChatGPT interface
   api_url = 'https://api.openai.com/v1/chat/completions'
 
-  api_key = 'api-key' # define your own api-key from the ChatGPT account
+  api_key = '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'
 
   headers = {
      'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ def get_Quiz(correctness,prev_questions):
               data2 = 'Write a NEW VERY HARD! question, harder than this question: - ' + last_question[0] +  f', about any specific topic with {number_options} choices/answers specified with letters after the question, specify the correct answer at the end of the text in a new line, do not repeat this question'
 
   data1_send = {
-    'model': 'gpt-3.5-turbo',
+    'model':'gpt-4',
     "messages": [{"role": "user", "content": data1}],
     'max_tokens': 512,
     'frequency_penalty': 1.0,
@@ -117,7 +117,7 @@ def get_Quiz(correctness,prev_questions):
   }
 
   data2_send = {
-    'model': 'gpt-3.5-turbo',
+    'model': 'gpt-4',
     "messages": [{"role": "user", "content": data2}],
     'max_tokens': 512,
     'frequency_penalty': 1.0,
