@@ -33,7 +33,7 @@ def get_Quiz(correctness,prev_questions):
   ## request connection with ChatGPT interface
   api_url = 'https://api.openai.com/v1/chat/completions'
 
-  api_key = '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'
+  api_key = 'api-key' #please add your API key here
 
   headers = {
      'Content-Type': 'application/json',
